@@ -1,36 +1,38 @@
 import React from 'react';
-import { NavLink } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 function Navbar() {
-    const activeLink = " bg-blue-100 text-black";
-    const normalLink = "";
+
     return (
 
-        <div className="w-full h-16 bg-black text-white text-xl uppercase font-bold grid grid-cols-4 overflow-hidden">
-          <NavLink
-            to="/"
-            className={({ isActive }) => (isActive ? activeLink : normalLink)}
-          >
-            <p className="border w-full h-full px-4 centered">Home</p>
-          </NavLink>
-          <NavLink
-            to="/theory1"
-            className={({ isActive }) => (isActive ? activeLink : normalLink)}
-          >
-            <p className="border w-full h-full px-4 centered">theory</p>
-          </NavLink>
-          <NavLink
-            to="/graph1"
-            className={({ isActive }) => (isActive ? activeLink : normalLink)}
-          >
-            <p className="border w-full h-full px-4 centered">graph</p>
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) => (isActive ? activeLink : normalLink)}
-          >
-            <p className="border w-full h-full px-4 centered">contact</p>
-          </NavLink>
+        <div>
+            <ul class="nav nav-tabs p-4  text-white flex justify-between">
+                <Link to="/theory1" title="Theory">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Theory</a>
+                    </li>
+                </Link>
+                <Link to="/graph1" title="Lecture">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Animation</a>
+                    </li>
+                </Link>
+                <Link to="/points" title="Lecture">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Simulator</a>
+                    </li>
+                </Link>
+                <Link to="/quiz" title="Quiz">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Self Evaluation</a>
+                    </li>
+                </Link>
+                <Link to="/setting" title="Reference">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Feedback</a>
+                    </li>
+                </Link>
+            </ul>
         </div>
 
 
