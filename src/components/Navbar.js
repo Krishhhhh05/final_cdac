@@ -17,7 +17,7 @@ function Navbar() {
                         <a class="nav-link active" aria-current="page" href="#">Animation</a>
                     </li>
                 </Link>
-                <Link to="/points" title="Lecture">
+                <Link to="/simulator" title="Simulator">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Simulator</a>
                     </li>
@@ -34,7 +34,6 @@ function Navbar() {
                 </Link>
             </ul>
         </div>
-
 
     );
 }

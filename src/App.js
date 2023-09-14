@@ -4,6 +4,9 @@ import { Route,Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Thoery1 from './components/Thoery1';
 import Graph1 from './components/Graph1';
+import Simulator from './components/Simulator';
+import Multi from './components/Multi';
+import Region from './components/Region';
 
 
 function App() {
@@ -12,7 +15,9 @@ function App() {
     <Route path='/' element={<Home />}/>
     <Route path='/theory1' element={<Thoery1 />}/>
     <Route path='/graph1' element={<Graph1 />}/>
-
+    <Route path='/simulator' element={<Simulator />}/>
+    <Route path='/multi' element={<Multi />}/>
+    <Route path='/region' element={<Region />}/>
     </Routes>
   );
 }
