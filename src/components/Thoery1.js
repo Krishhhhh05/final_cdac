@@ -4,38 +4,56 @@ import Multi from './Multi';
 import Navbar from './Navbar';
 import Region from './Region';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
 function Workbench() {
   const [step, setStep] = useState(0);
   const [answerCorrect, setAnswerCorrect] = useState(false);
+  const navigate = useNavigate();
 
-  const handleNext = () => {
-    if (step === 1) { // Check if you are on Step 1 (Multi)
-      showSweetAlert();
-    } else if (step === 2) { // Check if you are on Step 2 (Region)
-      setStep(3); // Move to Step 3
-      Swal.fire({
-        title: 'Bas ho gaya ab nahi ho rha mere se',
-        icon: 'success',
-        confirmButtonText: 'Okay'
-      });
+  const handleNext = async () => {
+    if (step === 1) {
+      if (answerCorrect) {
+        await showMultiStepAlert();
+      } else {
+        alert('Please provide a correct answer before proceeding.');
+      }
+    } else if (step === 2) {
+      if (answerCorrect) {
+        await showRegionStepAlert();
+      } else {
+        alert('Please provide a correct answer before proceeding.');
+      }
     } else {
       setStep(step + 1);
     }
   };
 
-  const showSweetAlert = () => {
-    Swal.fire({
+  const showMultiStepAlert = async () => {
+    await Swal.fire({
       title: 'Arbitrary Point Step',
       text: 'Add your arbitrary point instructions here...',
       icon: 'info',
       confirmButtonText: 'Okay'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        setAnswerCorrect(true);
-        setStep(2); // Move to Step 2 (Region)
-      }
     });
+
+    setAnswerCorrect(true);
+    setStep(2);
+  };
+
+  const showRegionStepAlert = async () => {
+    await Swal.fire({
+      title: 'Region Step',
+      text: 'This is the next region alert.',
+      icon: 'info',
+      confirmButtonText: 'Okay'
+
+    });
+    if (answerCorrect) {
+      setStep(0);
+    } else {
+      alert('Please provide a correct answer before proceeding.');
+    }
   };
 
   const renderStep = () => {
@@ -45,7 +63,6 @@ function Workbench() {
           <div>
             <p>Instructions:</p>
             <p>Add your instructions here...</p>
-            <button onClick={handleNext}>Next</button>
           </div>
         );
       case 1:
@@ -56,15 +73,13 @@ function Workbench() {
         return <Multi setAnswerCorrect={setAnswerCorrect} />;
     }
   };
-  
+
   return (
     <div className="min-h-screen p-10 justify-center">
       <h1 className="text-4xl font-bold mb-4 justify-center text-align-bottom-center">INEQUATIONS IN TWO VARIABLES</h1>
       <Navbar />
       {renderStep()}
-      {answerCorrect && step < 4 && (
-        <button onClick={handleNext}>Next</button>
-      )}
+      <button onClick={handleNext}>Next</button>
     </div>
   );
 }
