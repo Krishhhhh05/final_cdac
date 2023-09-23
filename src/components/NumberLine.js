@@ -57,7 +57,7 @@ const NumberLine = () => {
       tickmode: 'array',
       tickvals: xValues,
       ticktext: xValues.map(String),
-      zeroline: false, // Set zeroline to false to remove the vertical line at zero
+      zeroline: false, 
 
     },
     yaxis: {
@@ -70,16 +70,13 @@ const NumberLine = () => {
     height: 250,
     plot_bgcolor: 'white',
     legend: {
-      traceorder: 'normal', // Display legend items in the order they appear in the data array
+      traceorder: 'normal', 
       font: {
         family: 'Arial, sans-serif',
-        size: 7,
+        size: 12,
         color: 'black',
       },
-      // Specify a fixed height for the legend (adjust the height as needed)
-      // Note: The height value must include units, e.g., 'px' for pixels
-      // You can change the height value to your desired fixed height
-      // For example, '150px' for a fixed height of 150 pixels
+     
       height: '400',
     },
   };
@@ -87,25 +84,40 @@ const NumberLine = () => {
   
 
   return (
-    <div>
-      <h2>Scatter Plot with React and Plotly</h2>
-      <div className=''>
-        <label>Highlight a Value: </label>
-        <input
-          type="number"
-          min="-10"
-          max="10"
-          step="0.1"
-          onChange={handleInputChange}
-          className='m-2 p-2'
-        />
+    <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
+      <div className="bg-gray-300 p-4 rounded-md">
+        {/* Content for the left grid */}
+        <div className='p-4'>
+          <h4 className='flex justify-center items-center'>Instructions</h4>
+          <p>
+            <ul class="list-disc">
+              <li>Enter any value from the number appearing in the graph in the input box</li>
+              <li>You can now see the poitive and negative values respectively</li>
+            </ul>
+          </p>
+        </div>
       </div>
-      <Plot
-        data={data}
-        layout={graphlayout}
-        config={{ displayModeBar: false }}
-      />
-      
+      <div className="bg-gray-400 p-4 col-span-2 rounded-md">
+        <h4 className='flex justify-center items-center'> Visualizing Positive and Pegative values on a numberline</h4>
+        <div className='flex justify-center items-center'>
+          <label>Highlight a Value: </label>
+          <input
+            type="number"
+            min="-10"
+            max="10"
+            step="0.1"
+            onChange={handleInputChange}
+            className='m-2 p-2 rounded-sm'
+          />
+        </div>
+        <div className='w-full flex justify-center'> {/* Maximize width of the graph */}
+          <Plot
+            data={data}
+            layout={graphlayout}
+            config={{ displayModeBar: false }}
+          />
+        </div>
+      </div>
     </div>
   );
 };

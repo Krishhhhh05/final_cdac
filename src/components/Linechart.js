@@ -71,8 +71,29 @@ const Linechart = ({ nextStep }) => {
 
   return (
     <div>
-      <h2>Click on the Number Line</h2>
-      {currentTargetValue && <p>Target Value: {currentTargetValue}</p>}
+      <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
+      {/* Left grid (gray) */}
+      <div className="bg-gray-300 p-4 rounded-md">
+        {/* Content for the left grid */}
+        <div className='p-4'>
+          <h4> Instructions</h4>
+          <p>
+          <ul class="list-disc">
+            <li> Correctly choose the target values</li>
+          </ul>
+          </p>
+        </div>
+      </div>
+
+      <div className="bg-gray-400 p-4 col-span-2 rounded-md">
+        {/* Content for the second right grid */}
+        <h2>Click on the Number Line</h2>
+      {currentTargetValue && 
+      <div className='flex items-center'>
+        Target Value: 
+       <div className='bg-sky-500/75 shrink m-2 rounded-full p-3 text-white'>    {currentTargetValue}</div>
+        
+        </div >}
       <div>
         <p>Click on the number line to select a value:</p>
         <Plot
@@ -85,6 +106,9 @@ const Linechart = ({ nextStep }) => {
           onClick={handleNumberLineClick}
         />
       </div>
+      </div>
+    </div>
+      
     </div>
   );
 };

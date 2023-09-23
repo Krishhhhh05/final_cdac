@@ -74,7 +74,7 @@ const NumRegion = () => {
     },
     showlegend: true,
   };
-  
+
   const [showCarousel, setShowCarousel] = useState(true);
   const [showContent, setShowContent] = useState(false);
 
@@ -101,66 +101,86 @@ const NumRegion = () => {
         <button onClick={handleCloseCarousel} type="button" class="btn btn-primary m-2 ">
           {showCarousel ? 'Hide Carousel' : 'Show Carousel'}
         </button>
-        {showCarousel && (
-          <Carousel activeIndex={index} onSelect={handleSelect} interval={5000}>
+        <div  className=' p-3 content-center ' >
 
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.rvSWtRd_oPRTwDoTCmkP5gHaE8%26pid%3DApi&f=1&ipt=b720442f6ab6e413907bad8cfb489afed5095d4e724bf072470136e85d430f06&ipo=images"
-                alt="3D Plane"
-              />
-              <Carousel.Caption>
-                <h3 className="text-success fw-bolder fs-3">3D Plane</h3>
-                <p className="text-muted fs-6 fw-bold">
-                  A plane in 3D coordinate space is a flat surface that extends indefinitely containing a vector that is perpendicular to the plane called as the normal.
-                </p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.ZO4TmUbxM5-V1R7bbDpMHQHaEK%26pid%3DApi&f=1&ipt=1b90e9c843316a081f822f4cb672b1d44b4f201f4a9cfaca6a96927ddea4394c&ipo=images"
-                alt="Angle Between Planes"
-              />
-              <Carousel.Caption>
-                <h3 className="text-success fw-bolder fs-3">Angle Between Planes</h3>
-                <p className="text-muted fs-6 fw-bold">
-                  The angle between two planes is equal to the angle between their normals.
-                </p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.bPBCgvp9N0SUbVYJnBg2IQHaEo%26pid%3DApi&f=1&ipt=1ed7532ff69f93a73e18f28cbbcaa6770be3ea6ce8c9713811f5161fbe387718&ipo=images"
-                alt="Pup"
-              />
-              <Carousel.Caption>
-                <h3>Third slide label</h3>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          </Carousel>
+          {showCarousel && (
+           <div className='flex justify-center items-center'>
 
-        )}
+
+
+              <Carousel activeIndex={index} onSelect={handleSelect} interval={5000}>
+
+                <Carousel.Item>
+                  <img
+                    className="d-block"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.rvSWtRd_oPRTwDoTCmkP5gHaE8%26pid%3DApi&f=1&ipt=b720442f6ab6e413907bad8cfb489afed5095d4e724bf072470136e85d430f06&ipo=images"
+                    alt="3D Plane"
+                  />
+                  <Carousel.Caption>
+                    <h3 className="text-success fw-bolder fs-3">3D Plane</h3>
+                    <p className="text-muted fs-6 fw-bold">
+                      A plane in 3D coordinate space is a flat surface that extends indefinitely containing a vector that is perpendicular to the plane called as the normal.
+                    </p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="d-block"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.ZO4TmUbxM5-V1R7bbDpMHQHaEK%26pid%3DApi&f=1&ipt=1b90e9c843316a081f822f4cb672b1d44b4f201f4a9cfaca6a96927ddea4394c&ipo=images"
+                    alt="Angle Between Planes"
+                  />
+                  <Carousel.Caption>
+                    <h3 className="text-success fw-bolder fs-3">Angle Between Planes</h3>
+                    <p className="text-muted fs-6 fw-bold">
+                      The angle between two planes is equal to the angle between their normals.
+                    </p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="d-block"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.bPBCgvp9N0SUbVYJnBg2IQHaEo%26pid%3DApi&f=1&ipt=1ed7532ff69f93a73e18f28cbbcaa6770be3ea6ce8c9713811f5161fbe387718&ipo=images"
+                    alt="Pup"
+                  />
+                  <Carousel.Caption>
+                    <h3>Third slide label</h3>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              </Carousel>
+              </div>
+          )}
+          </div>
         {showContent && (
-          <div class='main flex flex-row'>
-            <div className='graph'>
-            <Plot
-              data={plotData}
-              layout={layout}
-              config={{ displayModeBar: false }}
-              style={{ width: '700px', height: '500px' }}
-            />
+          <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
+            <div className="bg-gray-300 p-4 rounded-md">
+              {/* Content for the left grid */}
+              <div className='p-4'>
+                <h4> Instructions</h4>
+                <p>
+                  <ul class="list-disc">
+                    <li> Correctly choose the target values</li>
+                  </ul>
+                  <div id="input" className=" ">
+                    <h1 className="font-bold text-lg text-center">Plotting Equations</h1>
+                    <label>a:<input className="bg-white rounded-full mx-2 my-6 px-3" type="number" value={a} placeholder="Enter a to plot X - a > 0 " onChange={(event) => setA(parseFloat(event.target.value))} /> </label>
+                    <button className="btn btn-lg btn-primary mx-8 my-8" onClick={handlePlot}> Plot</button>
+
+                  </div>
+                </p>
+              </div>
             </div>
 
-            <div id="input" className="ml-6 mr-6 top-4 fixed-left float-right border-2 w-1/3 p-4 border-b-4 border-gray-200 rounded-xl bg-gray-50">
-              <h1 className="font-bold text-lg text-center">Plotting Equations</h1>
-              <label>a:<input className="bg-white rounded-full mx-2 my-6 px-3" type="number" value={a} placeholder="Enter a to plot X - a > 0 " onChange={(event) => setA(parseFloat(event.target.value))} /> </label>
-              <button className="btn btn-lg btn-primary mx-8 my-8" onClick={handlePlot}> Plot</button>
-
+            <div className=" main-content bg-gray-400 p-4 col-span-2 rounded-md">
+              <Plot
+                data={plotData}
+                layout={layout}
+                config={{ displayModeBar: false }}
+                style={{ width: '700px', height: '500px' }}
+              />
             </div>
+
+
           </div>
         )}
       </div>
