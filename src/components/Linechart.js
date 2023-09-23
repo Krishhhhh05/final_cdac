@@ -40,7 +40,11 @@ const Linechart = ({ nextStep }) => {
           setCurrentTargetValue(targetValues[nextTargetIndex]);
         } else {
           // All targets have been guessed
-          nextStep();
+          Swal.fire({
+            title: 'Correct!',
+            text: `right`,
+            icon: 'success',
+          })
         }
       });
     } else {
