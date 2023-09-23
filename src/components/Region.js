@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router';
 
 const Region = (props) => {
     const [a, setA] = useState('');

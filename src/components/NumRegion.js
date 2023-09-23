@@ -32,10 +32,6 @@ const NumRegion = () => {
     const fillcolorAboveX = 'rgba(0, 255,0 , 0.3)';
     const fillcolorBelowX = 'rgba(255, 0, 0, 0.3)';
 
-
-
-
-
     const positiveRegionX = {
       x: [a, 10, 10, a],
       y: [x[0], x[0], x[1], x[1]],

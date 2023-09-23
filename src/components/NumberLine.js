@@ -5,12 +5,10 @@ import createPlotlyComponent from 'react-plotly.js/factory';
 const Plot = createPlotlyComponent(Plotly);
 
 const NumberLine = () => {
-  // Generate x-values from -10 to 10
   const xValues = Array.from({ length: 21 }, (_, index) => index - 10);
 
   const [highlightedValue, setHighlightedValue] = useState(0);
 
-  // Function to handle user input and highlight the value
   const handleInputChange = (event) => {
     const inputValue = parseFloat(event.target.value);
     if (!isNaN(inputValue) && inputValue >= -10 && inputValue <= 10) {
@@ -20,7 +18,6 @@ const NumberLine = () => {
     }
   };
 
-  // Calculate indices of points to the left and right of the highlighted value
   const highlightIndex = xValues.indexOf(highlightedValue);
   const leftIndices = xValues.slice(0, highlightIndex);
   const rightIndices = xValues.slice(highlightIndex + 1);
@@ -76,10 +73,6 @@ const NumberLine = () => {
         size: 7,
         color: 'black',
       },
-      // Specify a fixed height for the legend (adjust the height as needed)
-      // Note: The height value must include units, e.g., 'px' for pixels
-      // You can change the height value to your desired fixed height
-      // For example, '150px' for a fixed height of 150 pixels
       height: '400',
     },
   };

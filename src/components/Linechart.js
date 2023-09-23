@@ -5,23 +5,25 @@ import Swal from 'sweetalert2';
 
 const Plot = createPlotlyComponent(Plotly);
 
-const Linechart = ({ nextStep }) => {
-  // Define the set of predefined target values
-  const targetValues = useMemo(() => [-5, 3, 7], []); // Wrap in useMemo to prevent re-rendering
+const Linechart = ({ onNext }) => {
+  const targetValues = useMemo(() => {
+    const randomValues = [];
+    while (randomValues.length < 3) {
+      const randomValue = Math.floor(Math.random() * 21) - 10;
+      if (!randomValues.includes(randomValue)) {
+        randomValues.push(randomValue);
+      }
+    }
+    return randomValues;
+  }, []);
 
-  // Generate x-values from -10 to 10
   const xValues = useMemo(() => Array.from({ length: 21 }, (_, index) => index - 10), []);
-
-  // Create y-values as an array of zeros
   const yValues = useMemo(() => Array(xValues.length).fill(0), [xValues]);
 
-  // State to store the current target value
   const [currentTargetValue, setCurrentTargetValue] = useState(targetValues[0]);
-
-  // State to track the guessed target values
   const [guessedTargets, setGuessedTargets] = useState([]);
+  const [correctGuessCount, setCorrectGuessCount] = useState(0);
 
-  // Function to handle user clicks on the Plotly number line
   const handleNumberLineClick = (event) => {
     const clickedValue = event.points[0].x;
 
@@ -31,21 +33,13 @@ const Linechart = ({ nextStep }) => {
         text: `You selected ${clickedValue}.`,
         icon: 'success',
       }).then(() => {
-        // Update the guessedTargets array
         setGuessedTargets([...guessedTargets, currentTargetValue]);
 
-        // Move to the next target value
         const nextTargetIndex = targetValues.indexOf(currentTargetValue) + 1;
         if (nextTargetIndex < targetValues.length) {
           setCurrentTargetValue(targetValues[nextTargetIndex]);
-        } else {
-          // All targets have been guessed
-          Swal.fire({
-            title: 'Correct!',
-            text: 'right',
-            icon: 'success',
-          })
-        }
+        } 
+        setCorrectGuessCount(correctGuessCount + 1);
       });
     } else {
       Swal.fire({
@@ -55,19 +49,16 @@ const Linechart = ({ nextStep }) => {
       });
     }
   };
-  const numberLineData = [
-    {
-      x: xValues,
-      y: yValues,
-      type: 'scatter',
-      mode: 'markers',
-      marker: { size: 20, color: 'blue' },
-    },
-  ];
 
   useEffect(() => {
     setCurrentTargetValue(targetValues[0]);
-  }, [targetValues]); // Include targetValues in the dependency array
+  }, [targetValues]);
+
+  useEffect(() => {
+    if (correctGuessCount === 3) {
+      onNext(); // Notify parent component that targets are guessed correctly
+    }
+  }, [correctGuessCount, onNext]);
 
   return (
     <div>
@@ -76,10 +67,32 @@ const Linechart = ({ nextStep }) => {
       <div>
         <p>Click on the number line to select a value:</p>
         <Plot
-          data={numberLineData}
+          data={[
+            {
+              x: xValues,
+              y: yValues,
+              type: 'scatter',
+              mode: 'markers',
+              marker: { size: 20, color: 'blue' },
+            },
+          ]}
           layout={{
-            ...layout,
-            xaxis: { ...layout.xaxis, title: 'Values' },
+            xaxis: {
+              showgrid: false,
+              tickmode: 'array',
+              tickvals: Array.from({ length: 21 }, (_, index) => index - 10),
+              ticktext: Array.from({ length: 21 }, (_, index) => index - 10).map(String),
+              title: 'Values'
+            },
+            yaxis: {
+              showgrid: false,
+              zeroline: true,
+              zerolinecolor: 'black',
+              zerolinewidth: 3,
+              showticklabels: false,
+            },
+            height: 200,
+            plot_bgcolor: 'white',
           }}
           config={{ displayModeBar: false }}
           onClick={handleNumberLineClick}
@@ -87,24 +100,6 @@ const Linechart = ({ nextStep }) => {
       </div>
     </div>
   );
-};
-
-const layout = {
-  xaxis: {
-    showgrid: false,
-    tickmode: 'array',
-    tickvals: Array.from({ length: 21 }, (_, index) => index - 10),
-    ticktext: Array.from({ length: 21 }, (_, index) => index - 10).map(String),
-  },
-  yaxis: {
-    showgrid: false,
-    zeroline: true,
-    zerolinecolor: 'black',
-    zerolinewidth: 3,
-    showticklabels: false,
-  },
-  height: 200,
-  plot_bgcolor: 'white',
 };
 
 export default Linechart;

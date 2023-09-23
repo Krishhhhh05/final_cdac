@@ -4,7 +4,6 @@ import Multi from './Multi';
 import Navbar from './Navbar';
 import Region from './Region';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router';
 import Linechart from './Linechart';
 import NumberLine from './NumberLine';
 import NumRegion from './NumRegion';
@@ -12,7 +11,6 @@ import NumRegion from './NumRegion';
 function Workbench() {
   const [step, setStep] = useState(1);
   const [answerCorrect, setAnswerCorrect] = useState(false);
-  const navigate = useNavigate();
 
   const handleNext = async () => {
     if (step === 4) {
@@ -62,20 +60,20 @@ function Workbench() {
   const renderStep = () => {
     switch (step) {
       case 1:
-        return <Linechart/>;
+        return <Linechart onNext={handleNext} />;
       case 2:
-        return <NumberLine/>;
+        return <NumberLine />;
       case 3:
-        return <NumRegion/>;
+        return <NumRegion />;
       case 4:
         return <Multi setAnswerCorrect={setAnswerCorrect} />;
       case 5:
         return <Region setAnswerCorrect={setAnswerCorrect} handleNext={handleNext} />;
-        case 6:
-          return <Linechart/>
+      case 6:
+        return <Linechart />
       default:
         return <Multi setAnswerCorrect={setAnswerCorrect} />;
-        
+
     }
   };
   const nextStep = () => {
@@ -84,7 +82,7 @@ function Workbench() {
   return (
     <div className="min-h-screen p-10 justify-center">
       <h1 className="text-4xl font-bold mb-4 justify-center text-align-bottom-center">INEQUATIONS IN TWO VARIABLES</h1>
-        <Navbar />
+      <Navbar />
       <div className="bg-gray-200 rounded-lg flex flex-col h-2/3  items-center justify-center">
         <div>
           {/* {step === 1 && <Linechart />}
@@ -94,22 +92,23 @@ function Workbench() {
           {step === 5 && <Region setAnswerCorrect={setAnswerCorrect} handleNext={handleNext} />} */}
 
         </div>
-       
-        
-        
+
+
+
         {renderStep()}
-        {(step === 1 ||step === 2 ||step === 3 )  && 
-        <div>  
-        <button type="button" class="btn btn-primary m-2 " onClick={nextStep}>Next</button>
-     </div>
+        {(step === 1 || step === 2 || step === 3) &&
+          <div>
+            <button type="button" class="btn btn-primary m-2 " onClick={nextStep}>Next</button>
+          </div>
         }
-        {(step === 4 || step === 5) && 
-                <button  type="button" class="btn btn-primary m-2 " onClick={handleNext}>Next</button>
+        {(step === 4 || step === 5) &&
+          <button type="button" class="btn btn-primary m-2 " onClick={handleNext}>Next</button>
 
         }
       </div>
-      </div>
-      );
+    </div>
+  );
 }
 
-      export default Workbench;
+export default Workbench;
+
