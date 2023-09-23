@@ -55,7 +55,7 @@ function Multi(props) {
             Swal.fire('Enter Values', 'Please enter values for slope and intercept before selecting an option.', 'warning');
             return;
         }
-        if (color === correctAnswer) {            
+        if (color === correctAnswer) {
             props.setAnswerCorrect(true);
             Swal.fire('Correct!', `Your answer is correct!`, 'success');
             setA('');
@@ -90,111 +90,134 @@ function Multi(props) {
 
     return (
         <>
-            <div className='App'>
-                < div class="flex m-2 justify-start items-center h-screen">
+            <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
+                <div className="bg-gray-300 p-4 rounded-md">
+                    {/* Content for the left grid */}
+                    <div className='p-4'>
+                        <h4> Instructions</h4>
+                        <p>
+                            <ul class="list-disc">
+                                <li> Correctly choose the target values</li>
+                            </ul>
+                        </p>
 
-                    <div class="px-6">
-                        <div className="mr-16 fixed-left my-45 float-right border-2 w-2/3 p-4 border-b-4 border-gray-200 rounded-xl bg-gray-50">
-                            <h1 className="font-bold text-lg text-center"><br />Plotting the Equation</h1>
+
+                        <h1 className="font-bold text-lg text-center"><br />Plotting the Equation</h1>
+                        <br />
+                        <div className="font-light">
+                            Here the equation is in the form of      <b><br />Y = mX + C</b>
                             <br />
-                            <div className="font-light">
-                                Here the equation is in the form of      <b><br />Y = mX + C</b>
+                            <br />
+                            Enter the values and select which line correctly plots the equation.
+                        </div>
+                        <div className="" id="input">
+                            <div className="a" ID="INPUT"><br />
+                                <label htmlFor="a" className="flex justify-center">Enter the slope: </label>
+                                <div className="flex items-center justify-center ">
+  <input
+    className="bg-white rounded-full m-2 p-2 text-center"
+    id="a"
+    name="a"
+    type="text"
+    placeholder="Enter Slope"
+    value={a}
+    onChange={handleInputChange}
+  />
+</div>
+
                                 <br />
-                                <br />
-                                Enter the values and select which line correctly plots the equation.
-                            </div>
-                            <div className="" id="input">
-                                <div className="a" ID="INPUT"><br />
-                                    <label htmlFor="a">Enter the slope: </label>
-                                    <input
-                                        className="bg-white rounded-full mx-6 my-6 px-3"
-                                        id="a"
-                                        name="a"
-                                        type="text"
-                                        placeholder='Enter Slope'
-                                        value={a}
-                                        onChange={handleInputChange}
-                                    />
-                                    <br />
-                                    <label htmlFor="b">Enter the Intercept: </label>
-                                    <input
-                                        className="bg-white rounded-full mx-6 my-6 px-3"
-                                        id="b"
-                                        name="b"
-                                        type="text"
-                                        placeholder='Enter Intercept'
-                                        value={b}
-                                        onChange={handleInputChange}
-                                    />
+                                <label htmlFor="b" className="flex justify-center">Enter the Intercept: </label>
+                                <div className="flex items-center justify-center ">
+
+                                <input
+                                    className="bg-white rounded-full m-2 p-2 text-center"
+                                    id="b"
+                                    name="b"
+                                    type="text"
+                                    placeholder='Enter Intercept'
+                                    value={b}
+                                    onChange={handleInputChange}
+                                />
                                 </div>
-                                <br />
-                                <div className="flex justify-align">
-                                    {randomColors.map((color, index) => (
-                                        <button
-                                            key={index}
-                                            type="button"
-                                            className={`btn ${color === correctAnswer ? 'btn-success' : 'btn-danger'} mx-2`}
-                                            style={{ backgroundColor: color }}
-                                            onClick={() => checkAnswer(color)}
-                                        >
-                                            {color.charAt(0).toUpperCase() + color.slice(1)}
-                                        </button>
-                                    ))}
-                                </div>
-                                <br />
                             </div>
+                            <br />
+                            <div className="flex justify-align">
+                                {randomColors.map((color, index) => (
+                                    <button
+                                        key={index}
+                                        type="button"
+                                        className={`btn ${color === correctAnswer ? 'btn-success' : 'btn-danger'} mx-2`}
+                                        style={{ backgroundColor: color }}
+                                        onClick={() => checkAnswer(color)}
+                                    >
+                                        {color.charAt(0).toUpperCase() + color.slice(1)}
+                                    </button>
+                                ))}
+                            </div>
+                            <br />
                         </div>
                     </div>
 
-                    <div id="graph" className="float-left ml-5 px-4 my-4">
-                        <Plot
-                            data={[
-                                {
-                                    x: x,
-                                    y: y1,
-                                    type: 'scatter',
-                                    mode: 'lines',
-                                    name: randomColors[0],
-                                    line: { color: randomColors[0] },
-                                },
-                                {
-                                    x: x,
-                                    y: y2,
-                                    type: 'scatter',
-                                    mode: 'lines',
-                                    name: randomColors[1],
-                                    line: { color: randomColors[1] },
-                                },
-                                {
-                                    x: x,
-                                    y: y3,
-                                    type: 'scatter',
-                                    mode: 'lines',
-                                    name: randomColors[2],
-                                    line: { color: randomColors[2] },
-                                },
-                                {
-                                    x: x,
-                                    y: y4,
-                                    type: 'scatter',
-                                    mode: 'lines',
-                                    name: randomColors[3],
-                                    line: { color: randomColors[3] },
-                                },
-                            ]}
-                            layout={{
-                                width: 700,
-                                height: 500,
-                                title: 'Line Plot',
-                                xaxis: { title: 'X Axis' },
-                                yaxis: { title: 'Y Axis' },
-                                showlegend: false,
-                            }}
-                            config={{ displayModeBar: false }}
-                        />
+
+                </div>
+                <div className=" main-content bg-gray-400 p-4 col-span-2 rounded-md">
+                    <div className=''>
+                        < div class="flex m-2 justify-start items-center ">
+
+
+
+                            <div id="graph" className="float-left ml-5 px-4 my-4">
+                                <Plot
+                                    data={[
+                                        {
+                                            x: x,
+                                            y: y1,
+                                            type: 'scatter',
+                                            mode: 'lines',
+                                            name: randomColors[0],
+                                            line: { color: randomColors[0] },
+                                        },
+                                        {
+                                            x: x,
+                                            y: y2,
+                                            type: 'scatter',
+                                            mode: 'lines',
+                                            name: randomColors[1],
+                                            line: { color: randomColors[1] },
+                                        },
+                                        {
+                                            x: x,
+                                            y: y3,
+                                            type: 'scatter',
+                                            mode: 'lines',
+                                            name: randomColors[2],
+                                            line: { color: randomColors[2] },
+                                        },
+                                        {
+                                            x: x,
+                                            y: y4,
+                                            type: 'scatter',
+                                            mode: 'lines',
+                                            name: randomColors[3],
+                                            line: { color: randomColors[3] },
+                                        },
+                                    ]}
+                                    layout={{
+                                        width: 700,
+                                        height: 500,
+                                        title: 'Line Plot',
+                                        xaxis: { title: 'X Axis' },
+                                        yaxis: { title: 'Y Axis' },
+                                        showlegend: false,
+                                    }}
+                                    config={{ displayModeBar: false }}
+                                />
+                            </div>
+                        </div >
                     </div>
-                </div >
+                </div>
             </div>
+
         </>
     );
 }

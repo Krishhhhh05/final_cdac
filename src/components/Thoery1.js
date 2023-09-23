@@ -82,8 +82,8 @@ function Workbench() {
   return (
     <div className="min-h-screen p-10 justify-center">
       <h1 className="text-4xl font-bold mb-4 justify-center text-align-bottom-center">INEQUATIONS IN TWO VARIABLES</h1>
-      <Navbar />
-      <div className="bg-gray-200 rounded-lg flex flex-col h-2/3  items-center justify-center">
+        <Navbar />
+      <div className="bg-gray-200 rounded-lg flex flex-col h-2/3  ">
         <div>
           {/* {step === 1 && <Linechart />}
           {step === 2 && <NumberLine />}
@@ -96,13 +96,29 @@ function Workbench() {
 
 
         {renderStep()}
-        {(step === 1 || step === 2 || step === 3) &&
-          <div>
-            <button type="button" class="btn btn-primary m-2 " onClick={nextStep}>Next</button>
-          </div>
+        {(step === 1 ||step === 2 ||step === 3 )  && 
+        <div className="flex items-center justify-center h-full">
+        <button
+          type="button"
+          className="btn btn-primary m-2 flex items-center justify-center"
+          onClick={nextStep}
+        >
+          Next
+        </button>
+      </div>
+      
         }
         {(step === 4 || step === 5) &&
-          <button type="button" class="btn btn-primary m-2 " onClick={handleNext}>Next</button>
+        <div className="flex items-center justify-center h-full">
+        <button
+          type="button"
+          className="btn btn-primary m-2 flex items-center justify-center"
+          onClick={handleNext}
+        >
+          Next
+        </button>
+      </div>
+       
 
         }
       </div>
