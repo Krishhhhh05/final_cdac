@@ -17,7 +17,7 @@ function Navbar() {
                         <a class="nav-link active" aria-current="page" href="#">Animation</a>
                     </li>
                 </Link>
-                <Link to="/simulator" title="Simulator">
+                <Link to="/mainflow" title="Simulator">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Simulator</a>
                     </li>
