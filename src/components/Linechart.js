@@ -42,7 +42,7 @@ const Linechart = ({ nextStep }) => {
           // All targets have been guessed
           Swal.fire({
             title: 'Correct!',
-            text: `right`,
+            text: 'right',
             icon: 'success',
           })
         }
@@ -55,8 +55,6 @@ const Linechart = ({ nextStep }) => {
       });
     }
   };
-
-  // Data for displaying the Plotly number line
   const numberLineData = [
     {
       x: xValues,
@@ -68,7 +66,6 @@ const Linechart = ({ nextStep }) => {
   ];
 
   useEffect(() => {
-    // Initialize the current target value when the component mounts
     setCurrentTargetValue(targetValues[0]);
   }, [targetValues]); // Include targetValues in the dependency array
 

@@ -17,7 +17,7 @@ function Navbar() {
                         <div class="nav-link active" aria-current="page" href=''>Animation</div>
                     </li>
                 </Link>
-                <Link to="/mainflow" title="Lecture">
+                <Link to="/mainflow" title="Simulator">
                     <li class="nav-item">
                         <div class="nav-link active" aria-current="page">Simulator</div>
                     </li>
@@ -34,7 +34,6 @@ function Navbar() {
                 </Link>
             </ul>
         </div>
-
 
     );
 }
