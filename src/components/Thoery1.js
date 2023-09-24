@@ -48,8 +48,8 @@ function Workbench() {
       text: 'This is the next region alert.',
       icon: 'info',
       confirmButtonText: 'Okay'
-
     });
+
     if (answerCorrect) {
       setStep(5);
     } else {
@@ -60,71 +60,59 @@ function Workbench() {
   const renderStep = () => {
     switch (step) {
       case 1:
-        return <Linechart onNext={handleNext} />;
+        return <Linechart onNext={handleNext} completed={answerCorrect} />;
       case 2:
-        return <NumberLine />;
+        return <NumberLine onNext={handleNext} />;
       case 3:
-        return <NumRegion />;
+        return <NumRegion onNext={handleNext} />;
       case 4:
         return <Multi setAnswerCorrect={setAnswerCorrect} />;
       case 5:
         return <Region setAnswerCorrect={setAnswerCorrect} handleNext={handleNext} />;
       case 6:
-        return <Linechart />
+        return <Linechart onNext={handleNext} completed={answerCorrect} />;
       default:
         return <Multi setAnswerCorrect={setAnswerCorrect} />;
-
     }
   };
+
   const nextStep = () => {
     setStep(step + 1);
   };
+  
   return (
     <div className="min-h-screen p-10 justify-center">
-      <h1 className="text-4xl font-bold mb-4 justify-center text-align-bottom-center">INEQUATIONS IN TWO VARIABLES</h1>
-        <Navbar />
-      <div className="bg-gray-200 rounded-lg flex flex-col h-2/3  ">
-        <div>
-          {/* {step === 1 && <Linechart />}
-          {step === 2 && <NumberLine />}
-          {step === 3 && <NumRegion />} */}
-          {/* {step === 4 && <Multi setAnswerCorrect={setAnswerCorrect} />}
-          {step === 5 && <Region setAnswerCorrect={setAnswerCorrect} handleNext={handleNext} />} */}
-
-        </div>
-
-
-
-        {renderStep()}
-        {(step === 1 ||step === 2 ||step === 3 )  && 
-        <div className="flex items-center justify-center h-full">
-        <button
-          type="button"
-          className="btn btn-primary m-2 flex items-center justify-center"
-          onClick={nextStep}
-        >
-          Next
-        </button>
-      </div>
-      
-        }
-        {(step === 4 || step === 5) &&
-        <div className="flex items-center justify-center h-full">
-        <button
-          type="button"
-          className="btn btn-primary m-2 flex items-center justify-center"
-          onClick={handleNext}
-        >
-          Next
-        </button>
-      </div>
-       
-
-        }
+      <h1 className="text-4xl font-bold mb-4 justify-center text-align-bottom-center">
+        INEQUATIONS IN TWO VARIABLES
+      </h1>
+      <Navbar />
+      <div className="bg-gray-200 rounded-lg flex flex-col h-2/3">
+        <div>{renderStep()}</div>
+        {(step === 1 || step === 2 || step === 3) && (
+          <div className="flex items-center justify-center h-full">
+            <button
+              type="button"
+              className="btn btn-primary m-2 flex items-center justify-center"
+              onClick={nextStep}
+            >
+              Next
+            </button>
+          </div>
+        )}
+        {(step === 4 || step === 5) && (
+          <div className="flex items-center justify-center h-full">
+            <button
+              type="button"
+              className="btn btn-primary m-2 flex items-center justify-center"
+              onClick={handleNext}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 export default Workbench;
-

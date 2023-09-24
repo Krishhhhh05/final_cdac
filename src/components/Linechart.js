@@ -1,129 +1,134 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState } from 'react';
 import Plotly from 'plotly.js-basic-dist';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import Swal from 'sweetalert2';
 
 const Plot = createPlotlyComponent(Plotly);
 
-const Linechart = ({ onNext }) => {
-  const targetValues = useMemo(() => {
-    const randomValues = [];
-    while (randomValues.length < 3) {
-      const randomValue = Math.floor(Math.random() * 21) - 10;
-      if (!randomValues.includes(randomValue)) {
-        randomValues.push(randomValue);
-      }
-    }
-    return randomValues;
-  }, []);
+const NumberLine = ({ onNext }) => {
+  const xValues = Array.from({ length: 21 }, (_, index) => index - 10);
 
-  const xValues = useMemo(() => Array.from({ length: 21 }, (_, index) => index - 10), []);
-  const yValues = useMemo(() => Array(xValues.length).fill(0), [xValues]);
+  const [highlightedValue, setHighlightedValue] = useState(null);
 
-  const [currentTargetValue, setCurrentTargetValue] = useState(targetValues[0]);
-  const [guessedTargets, setGuessedTargets] = useState([]);
-  const [correctGuessCount, setCorrectGuessCount] = useState(0);
-
-  const handleNumberLineClick = (event) => {
-    const clickedValue = event.points[0].x;
-
-    if (clickedValue === currentTargetValue) {
-      Swal.fire({
-        title: 'Correct!',
-        text: `You selected ${clickedValue}.`,
-        icon: 'success',
-      }).then(() => {
-        setGuessedTargets([...guessedTargets, currentTargetValue]);
-
-        const nextTargetIndex = targetValues.indexOf(currentTargetValue) + 1;
-        if (nextTargetIndex < targetValues.length) {
-          setCurrentTargetValue(targetValues[nextTargetIndex]);
-        } 
-        setCorrectGuessCount(correctGuessCount + 1);
-      });
+  const handleInputChange = (event) => {
+    const inputValue = parseFloat(event.target.value);
+    if (!isNaN(inputValue) && inputValue >= -10 && inputValue <= 10) {
+      setHighlightedValue(inputValue);
     } else {
-      Swal.fire({
-        title: 'Incorrect!',
-        text: 'Try again.',
-        icon: 'error',
-      });
+      setHighlightedValue(null);
     }
   };
 
-  useEffect(() => {
-    setCurrentTargetValue(targetValues[0]);
-  }, [targetValues]);
-
-  useEffect(() => {
-    if (correctGuessCount === 3) {
-      onNext(); // Notify parent component that targets are guessed correctly
+  const handleNextClick = () => {
+    if (highlightedValue !== null) {
+      onNext();
+    } else {
+      alert('Please enter a valid value before proceeding.');
     }
-  }, [correctGuessCount, onNext]);
+  };
+
+  const highlightIndex = xValues.indexOf(highlightedValue);
+  const leftIndices = xValues.slice(0, highlightIndex);
+  const rightIndices = xValues.slice(highlightIndex + 1);
+
+  const data = [
+    {
+      x: leftIndices,
+      y: leftIndices.map(() => 0),
+      mode: 'markers',
+      marker: { size: 10, color: 'red' },
+      name: 'Negative Values',
+    },
+    {
+      x: rightIndices,
+      y: rightIndices.map(() => 0),
+      mode: 'markers',
+      marker: { size: 10, color: 'green' },
+      name: 'Positive Values',
+    },
+    {
+      x: [highlightedValue],
+      y: [0],
+      mode: 'markers',
+      marker: { size: 20, color: 'blue' },
+      name: 'Highlighted Value',
+    },
+  ];
+
+  const graphlayout = {
+    xaxis: {
+      showgrid: false,
+      tickmode: 'array',
+      tickvals: xValues,
+      ticktext: xValues.map(String),
+      zeroline: false, 
+    },
+    yaxis: {
+      showgrid: false,
+      zeroline: true,
+      zerolinecolor: 'black',
+      zerolinewidth: 3,
+      showticklabels: false,
+    },
+    height: 250,
+    plot_bgcolor: 'white',
+    legend: {
+      traceorder: 'normal', 
+      font: {
+        family: 'Arial, sans-serif',
+        size: 12,
+        color: 'black',
+      },
+      height: '400',
+    },
+  };
 
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
-      {/* Left grid (gray) */}
+    <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
       <div className="bg-gray-300 p-4 rounded-md">
         {/* Content for the left grid */}
         <div className='p-4'>
-          <h4> Instructions</h4>
+          <h4 className='flex justify-center items-center'>Instructions</h4>
           <p>
-          <ul class="list-disc">
-            <li> Correctly choose the target values</li>
-          </ul>
+            <ul className="list-disc">
+              <li>Enter any value from the number appearing in the graph in the input box</li>
+              <li>You can now see the positive and negative values respectively</li>
+            </ul>
           </p>
         </div>
       </div>
-
       <div className="bg-gray-400 p-4 col-span-2 rounded-md">
-        {/* Content for the second right grid */}
-        <h2>Click on the Number Line</h2>
-      {currentTargetValue && 
-      <div className='flex items-center'>
-        Target Value: 
-       <div className='bg-sky-500/75 shrink m-2 rounded-full p-3 text-white'>    {currentTargetValue}</div>
-        
-        </div >}
-      <div>
-        <p>Click on the number line to select a value:</p>
-        <Plot
-          data={[
-            {
-              x: xValues,
-              y: yValues,
-              type: 'scatter',
-              mode: 'markers',
-              marker: { size: 20, color: 'blue' },
-            },
-          ]}
-          layout={{
-            xaxis: {
-              showgrid: false,
-              tickmode: 'array',
-              tickvals: Array.from({ length: 21 }, (_, index) => index - 10),
-              ticktext: Array.from({ length: 21 }, (_, index) => index - 10).map(String),
-              title: 'Values'
-            },
-            yaxis: {
-              showgrid: false,
-              zeroline: true,
-              zerolinecolor: 'black',
-              zerolinewidth: 3,
-              showticklabels: false,
-            },
-            height: 200,
-            plot_bgcolor: 'white',
-          }}
-          config={{ displayModeBar: false }}
-          onClick={handleNumberLineClick}
-        />
+        <h4 className='flex justify-center items-center'> Visualizing Positive and Negative values on a numberline</h4>
+        <div className='flex justify-center items-center'>
+          <label>Highlight a Value: </label>
+          <input
+            type="number"
+            min="-10"
+            max="10"
+            step="0.1"
+            onChange={handleInputChange}
+            className='m-2 p-2 rounded-sm'
+          />
+        </div>
+        <div className='w-full flex justify-center'> {/* Maximize width of the graph */}
+          <Plot
+            data={data}
+            layout={graphlayout}
+            config={{ displayModeBar: false }}
+          />
+        </div>
+        <div className="flex justify-center">
+          <button
+            type="button"
+            className="btn btn-primary m-2"
+            onClick={handleNextClick}
+            disabled={highlightedValue === null}
+          >
+            Next
+          </button>
+        </div>
       </div>
-      </div>
-    </div>
-      
     </div>
   );
 };
 
-export default Linechart;
+export default NumberLine;
