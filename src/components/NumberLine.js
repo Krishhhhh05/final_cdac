@@ -61,16 +61,6 @@ const NumberLine = ({ onNext }) => {
             config={{ displayModeBar: false }}
           />
         </div>
-        <div className="flex justify-center">
-          <button
-            type="button"
-            className="btn btn-primary m-2"
-            onClick={handleNextClick}
-            disabled={highlightedValue === null}
-          >
-            Next
-          </button>
-        </div>
       </div>
     </div>
   );

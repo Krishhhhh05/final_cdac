@@ -4,7 +4,7 @@ import createPlotlyComponent from 'react-plotly.js/factory';
 
 const Plot = createPlotlyComponent(Plotly);
 
-const NumberLine = ({ onNext }) => {
+const NumberLine = () => {
   const xValues = Array.from({ length: 21 }, (_, index) => index - 10);
 
   const [highlightedValue, setHighlightedValue] = useState(null);
@@ -15,14 +15,6 @@ const NumberLine = ({ onNext }) => {
       setHighlightedValue(inputValue);
     } else {
       setHighlightedValue(null);
-    }
-  };
-
-  const handleNextClick = () => {
-    if (highlightedValue !== null) {
-      onNext();
-    } else {
-      alert('Please enter a valid value before proceeding.');
     }
   };
 
@@ -85,7 +77,6 @@ const NumberLine = ({ onNext }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
       <div className="bg-gray-300 p-4 rounded-md">
-        {/* Content for the left grid */}
         <div className='p-4'>
           <h4 className='flex justify-center items-center'>Instructions</h4>
           <p>
@@ -115,16 +106,6 @@ const NumberLine = ({ onNext }) => {
             layout={graphlayout}
             config={{ displayModeBar: false }}
           />
-        </div>
-        <div className="flex justify-center">
-          <button
-            type="button"
-            className="btn btn-primary m-2"
-            onClick={handleNextClick}
-            disabled={highlightedValue === null}
-          >
-            Next
-          </button>
         </div>
       </div>
     </div>

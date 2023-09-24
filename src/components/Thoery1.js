@@ -11,6 +11,24 @@ import NumRegion from './NumRegion';
 function Workbench() {
   const [step, setStep] = useState(1);
   const [answerCorrect, setAnswerCorrect] = useState(false);
+  const [highlightedValue, setHighlightedValue] = useState(null);
+
+  const handleNextClick = ({ onNext }) => {
+    if (highlightedValue !== null) {
+      onNext();
+    } else {
+      alert('Please enter a valid value before proceeding.');
+    }
+  };
+
+  const handleInputChange = (event) => {
+    const inputValue = parseFloat(event.target.value);
+    if (!isNaN(inputValue) && inputValue >= -10 && inputValue <= 10) {
+      setHighlightedValue(inputValue);
+    } else {
+      setHighlightedValue(null);
+    }
+  };
 
   const handleNext = async () => {
     if (step === 4) {
@@ -79,7 +97,7 @@ function Workbench() {
   const nextStep = () => {
     setStep(step + 1);
   };
-  
+
   return (
     <div className="min-h-screen p-10 justify-center">
       <h1 className="text-4xl font-bold mb-4 justify-center text-align-bottom-center">
@@ -88,7 +106,19 @@ function Workbench() {
       <Navbar />
       <div className="bg-gray-200 rounded-lg flex flex-col h-2/3">
         <div>{renderStep()}</div>
-        {(step === 1 || step === 2 || step === 3) && (
+        {(step === 1) && (
+          <div className="flex items-center justify-center h-full">
+            <button
+              type="button"
+              className="btn btn-primary m-2"
+              onClick={handleNextClick}
+              disabled={highlightedValue === null}
+            >
+              Next
+            </button>
+          </div>
+        )}
+        {(step === 2 || step === 3) && (
           <div className="flex items-center justify-center h-full">
             <button
               type="button"
