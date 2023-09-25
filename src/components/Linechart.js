@@ -24,7 +24,6 @@ const Linechart = ({ nextStep }) => {
   }, []);
 
   const xValues = useMemo(() => Array.from({ length: 21 }, (_, index) => index - 10), []);
-
   const yValues = useMemo(() => Array(xValues.length).fill(0), [xValues]);
 
   const [currentTargetValue, setCurrentTargetValue] = useState(targetValues[0]);
