@@ -9,11 +9,9 @@ const Graph1 = () => {
   const [selectedPoint, setSelectedPoint] = useState(null);
 
   const handlePlot = () => {
-    // Calculate slope and intercept
     const slope = (y2 - y1) / (x2 - x1);
     const intercept = y1 - slope * x1;
 
-    // Create x values for the line trace
     const x = [-10, 10]; // Adjust the range as needed
 
     // Calculate y values for the line trace
