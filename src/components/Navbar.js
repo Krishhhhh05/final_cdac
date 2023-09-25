@@ -12,7 +12,7 @@ function Navbar() {
                         <div class="nav-link active" aria-current="page" >Theory</div>
                     </li>
                 </Link>
-                <Link to="/graph1" title="Lecture">
+                <Link to="/animation" title="Lecture">
                     <li class="nav-item">
                         <div class="nav-link active" aria-current="page" href=''>Animation</div>
                     </li>
