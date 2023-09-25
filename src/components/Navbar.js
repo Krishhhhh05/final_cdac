@@ -7,7 +7,7 @@ function Navbar() {
 
         <div>
             <ul class="nav nav-tabs p-4  text-white flex justify-between">
-                <Link to="/theory1" title="Theory">
+                <Link to="/theory" title="Theory">
                     <li class="nav-item">
                         <div class="nav-link active" aria-current="page" >Theory</div>
                     </li>
@@ -17,7 +17,7 @@ function Navbar() {
                         <div class="nav-link active" aria-current="page" href=''>Animation</div>
                     </li>
                 </Link>
-                <Link to="/mainflow" title="Simulator">
+                <Link to="/simulator" title="Simulator">
                     <li class="nav-item">
                         <div class="nav-link active" aria-current="page">Simulator</div>
                     </li>
