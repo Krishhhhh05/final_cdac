@@ -1,78 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Plotly from 'plotly.js-basic-dist';
 import createPlotlyComponent from 'react-plotly.js/factory';
+import Swal from 'sweetalert2';
 
 const Plot = createPlotlyComponent(Plotly);
 
-const NumberLine = () => {
-  const xValues = Array.from({ length: 21 }, (_, index) => index - 10);
+const Linechart = ({ nextStep }) => {
+  const generateRandomUniqueValue = (min, max, exclude) => {
+    let randomValue;
+    do {
+      randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
+    } while (exclude.includes(randomValue));
+    return randomValue;
+  };
 
-  const [highlightedValue, setHighlightedValue] = useState(null);
+  const targetValues = useMemo(() => {
+    const values = [];
+    while (values.length < 3) {
+      const randomValue = generateRandomUniqueValue(-10, 10, values);
+      values.push(randomValue);
+    }
+    return values;
+  }, []);
 
-  const handleInputChange = (event) => {
-    const inputValue = parseFloat(event.target.value);
-    if (!isNaN(inputValue) && inputValue >= -10 && inputValue <= 10) {
-      setHighlightedValue(inputValue);
+  const xValues = useMemo(() => Array.from({ length: 21 }, (_, index) => index - 10), []);
+
+  const yValues = useMemo(() => Array(xValues.length).fill(0), [xValues]);
+
+  const [currentTargetValue, setCurrentTargetValue] = useState(targetValues[0]);
+
+  const [guessedTargets, setGuessedTargets] = useState([]);
+
+  const handleNumberLineClick = (event) => {
+    const clickedValue = event.points[0].x;
+
+    if (clickedValue === currentTargetValue) {
+      Swal.fire({
+        title: 'Correct!',
+        text: `You selected ${clickedValue}.`,
+        icon: 'success',
+      }).then(() => {
+        setGuessedTargets([...guessedTargets, currentTargetValue]);
+
+        const nextTargetIndex = targetValues.indexOf(currentTargetValue) + 1;
+        if (nextTargetIndex < targetValues.length) {
+          setCurrentTargetValue(targetValues[nextTargetIndex]);
+        } 
+      });
     } else {
-      setHighlightedValue(null);
+      Swal.fire({
+        title: 'Incorrect!',
+        text: 'Try again.',
+        icon: 'error',
+      });
     }
   };
 
-  const highlightIndex = xValues.indexOf(highlightedValue);
-  const leftIndices = xValues.slice(0, highlightIndex);
-  const rightIndices = xValues.slice(highlightIndex + 1);
-
-  const data = [
+  const numberLineData = [
     {
-      x: leftIndices,
-      y: leftIndices.map(() => 0),
-      mode: 'markers',
-      marker: { size: 10, color: 'red' },
-      name: 'Negative Values',
-    },
-    {
-      x: rightIndices,
-      y: rightIndices.map(() => 0),
-      mode: 'markers',
-      marker: { size: 10, color: 'green' },
-      name: 'Positive Values',
-    },
-    {
-      x: [highlightedValue],
-      y: [0],
+      x: xValues,
+      y: yValues,
+      type: 'scatter',
       mode: 'markers',
       marker: { size: 20, color: 'blue' },
-      name: 'Highlighted Value',
     },
   ];
 
-  const graphlayout = {
-    xaxis: {
-      showgrid: false,
-      tickmode: 'array',
-      tickvals: xValues,
-      ticktext: xValues.map(String),
-      zeroline: false, 
-    },
-    yaxis: {
-      showgrid: false,
-      zeroline: true,
-      zerolinecolor: 'black',
-      zerolinewidth: 3,
-      showticklabels: false,
-    },
-    height: 250,
-    plot_bgcolor: 'white',
-    legend: {
-      traceorder: 'normal', 
-      font: {
-        family: 'Arial, sans-serif',
-        size: 12,
-        color: 'black',
-      },
-      height: '400',
-    },
-  };
+  useEffect(() => {
+    setCurrentTargetValue(targetValues[0]);
+  }, [targetValues]); // Include targetValues in the dependency array
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
@@ -80,36 +76,47 @@ const NumberLine = () => {
         <div className='p-4'>
           <h4 className='flex justify-center items-center'>Instructions</h4>
           <p>
-            <ul className="list-disc">
+            <ul class="list-disc">
               <li>Enter any value from the number appearing in the graph in the input box</li>
-              <li>You can now see the positive and negative values respectively</li>
+              <li>You can now see the poitive and negative values respectively</li>
             </ul>
           </p>
         </div>
       </div>
-      <div className="bg-gray-400 p-4 col-span-2 rounded-md">
-        <h4 className='flex justify-center items-center'> Visualizing Positive and Negative values on a numberline</h4>
-        <div className='flex justify-center items-center'>
-          <label>Highlight a Value: </label>
-          <input
-            type="number"
-            min="-10"
-            max="10"
-            step="0.1"
-            onChange={handleInputChange}
-            className='m-2 p-2 rounded-sm'
-          />
-        </div>
-        <div className='w-full flex justify-center'> {/* Maximize width of the graph */}
-          <Plot
-            data={data}
-            layout={graphlayout}
-            config={{ displayModeBar: false }}
-          />
-        </div>
+      <h2>Click on the Number Line</h2>
+      {currentTargetValue && <p>Target Value: {currentTargetValue}</p>}
+      <div>
+        <p>Click on the number line to select a value:</p>
+        <Plot
+          data={numberLineData}
+          layout={{
+            ...layout,
+            xaxis: { ...layout.xaxis, title: 'Values' },
+          }}
+          config={{ displayModeBar: false }}
+          onClick={handleNumberLineClick}
+        />
       </div>
     </div>
   );
 };
 
-export default NumberLine;
+const layout = {
+  xaxis: {
+    showgrid: false,
+    tickmode: 'array',
+    tickvals: Array.from({ length: 21 }, (_, index) => index - 10),
+    ticktext: Array.from({ length: 21 }, (_, index) => index - 10).map(String),
+  },
+  yaxis: {
+    showgrid: false,
+    zeroline: true,
+    zerolinecolor: 'black',
+    zerolinewidth: 3,
+    showticklabels: false,
+  },
+  height: 200,
+  plot_bgcolor: 'white',
+};
+
+export default Linechart;
