@@ -34,18 +34,31 @@ const Linechart = ({ nextStep }) => {
     const clickedValue = event.points[0].x;
 
     if (clickedValue === currentTargetValue) {
-      Swal.fire({
-        title: 'Correct!',
-        text: `You selected ${clickedValue}.`,
-        icon: 'success',
-      }).then(() => {
-        setGuessedTargets([...guessedTargets, currentTargetValue]);
+      if (guessedTargets.length === targetValues.length - 1) {
+        Swal.fire({
+          title: 'You can now move ahead!',
+          icon: 'success',
+          showCancelButton: false,
+          showConfirmButton: true,
+          confirmButtonText: 'Okay',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            nextStep();
+          }
+        });
+      } else {
+        Swal.fire({
+          title: 'Correct!',
+          icon: 'success',
+        }).then(() => {
+          setGuessedTargets([...guessedTargets, currentTargetValue]);
 
-        const nextTargetIndex = targetValues.indexOf(currentTargetValue) + 1;
-        if (nextTargetIndex < targetValues.length) {
-          setCurrentTargetValue(targetValues[nextTargetIndex]);
-        } 
-      });
+          const nextTargetIndex = targetValues.indexOf(currentTargetValue) + 1;
+          if (nextTargetIndex < targetValues.length) {
+            setCurrentTargetValue(targetValues[nextTargetIndex]);
+          }
+        });
+      }
     } else {
       Swal.fire({
         title: 'Incorrect!',
@@ -67,7 +80,7 @@ const Linechart = ({ nextStep }) => {
 
   useEffect(() => {
     setCurrentTargetValue(targetValues[0]);
-  }, [targetValues]); // Include targetValues in the dependency array
+  }, [targetValues]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
@@ -82,19 +95,29 @@ const Linechart = ({ nextStep }) => {
           </p>
         </div>
       </div>
-      <h2>Click on the Number Line</h2>
-      {currentTargetValue && <p>Target Value: {currentTargetValue}</p>}
-      <div>
-        <p>Click on the number line to select a value:</p>
-        <Plot
-          data={numberLineData}
-          layout={{
-            ...layout,
-            xaxis: { ...layout.xaxis, title: 'Values' },
-          }}
-          config={{ displayModeBar: false }}
-          onClick={handleNumberLineClick}
-        />
+      <div className="bg-gray-400 p-4 col-span-2 rounded-md">
+
+        <h2>Click on the Number Line</h2>
+        {currentTargetValue &&
+          <div className='flex items-center'>
+            Target Value:
+            <div className='bg-sky-500/75 shrink m-2 rounded-full p-3 text-white'>    {currentTargetValue}</div>
+
+          </div >}
+        <div>
+          <p>Click on the number line to select a value:</p>
+          <div className='flex justify-center items-center'>
+            <Plot
+              data={numberLineData}
+              layout={{
+                ...layout,
+                xaxis: { ...layout.xaxis, title: 'Values' },
+              }}
+              config={{ displayModeBar: false }}
+              onClick={handleNumberLineClick}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

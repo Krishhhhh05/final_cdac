@@ -35,8 +35,6 @@ function App() {
     <Route path='/quiz' element={<Quiz />}/>
     <Route path='/theory' element={<Theory />}/>
     <Route path='/animation' element={<Animation />}/>
-
-
     </Routes>
   );
 }
