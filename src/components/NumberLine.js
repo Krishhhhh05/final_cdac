@@ -5,12 +5,10 @@ import createPlotlyComponent from 'react-plotly.js/factory';
 const Plot = createPlotlyComponent(Plotly);
 
 const NumberLine = () => {
-  // Generate x-values from -10 to 10
   const xValues = Array.from({ length: 21 }, (_, index) => index - 10);
 
   const [highlightedValue, setHighlightedValue] = useState(0);
 
-  // Function to handle user input and highlight the value
   const handleInputChange = (event) => {
     const inputValue = parseFloat(event.target.value);
     if (!isNaN(inputValue) && inputValue >= -10 && inputValue <= 10) {
@@ -20,12 +18,9 @@ const NumberLine = () => {
     }
   };
 
-  // Calculate indices of points to the left and right of the highlighted value
   const highlightIndex = xValues.indexOf(highlightedValue);
   const leftIndices = xValues.slice(0, highlightIndex);
   const rightIndices = xValues.slice(highlightIndex + 1);
-
- 
 
   const data = [
     {
@@ -50,14 +45,14 @@ const NumberLine = () => {
       name: 'Highlighted Value',
     },
   ];
-  
+
   const graphlayout = {
     xaxis: {
       showgrid: false,
       tickmode: 'array',
       tickvals: xValues,
       ticktext: xValues.map(String),
-      zeroline: false, 
+      zeroline: false,
 
     },
     yaxis: {
@@ -70,18 +65,16 @@ const NumberLine = () => {
     height: 250,
     plot_bgcolor: 'white',
     legend: {
-      traceorder: 'normal', 
+      traceorder: 'normal',
       font: {
         family: 'Arial, sans-serif',
         size: 12,
         color: 'black',
       },
-     
+
       height: '400',
     },
   };
-  
-  
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
