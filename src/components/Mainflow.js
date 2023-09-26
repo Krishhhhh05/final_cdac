@@ -27,7 +27,7 @@ const ComponentC = () => {
     <div>
       <h4>Component 3</h4>
 
-      <NumRegion/>
+      <NumRegion />
     </div>
   );
 };
@@ -41,18 +41,18 @@ const Mainflow = () => {
 
   return (
     <div className='p-3 content-center'>
-    <Navbar />
-  <div className="bg-gray-200 rounded-lg flex flex-col h-2/3  items-center justify-center">
-    <div>
-    {step === 1 && <ComponentA />}
-    {step === 2 && <ComponentB />}
-    {step === 3 && <ComponentC />}
+      <Navbar />
+      <div className="bg-gray-200 rounded-lg flex flex-col h-2/3  items-center justify-center">
+        <div>
+          {step === 1 && <ComponentA />}
+          {step === 2 && <ComponentB />}
+          {step === 3 && <ComponentC />}
+        </div>
+        <div>   <button type="button" class="btn btn-primary m-2 " onClick={nextStep}>Next</button>
+        </div>
+
+      </div>
     </div>
-    <div>   <button  type="button" class="btn btn-primary m-2 " onClick={nextStep}>Next</button>
-    </div>
- 
-  </div>
-  </div>
   );
 };
 

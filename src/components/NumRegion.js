@@ -10,13 +10,10 @@ const NumRegion = () => {
 
   const handlePlot = () => {
     if (a === '' || isNaN(a)) {
-      // Handle missing or invalid input
       return;
     }
 
     const x = [-10, 10];
-
-
 
     const lineTraceX = {
       x: [a, a],
@@ -26,8 +23,6 @@ const NumRegion = () => {
     };
 
     const plotData = [lineTraceX];
-
-    // Color regions above and below the lines based on 'a'
 
     const fillcolorAboveX = 'rgba(0, 255,0 , 0.3)';
     const fillcolorBelowX = 'rgba(255, 0, 0, 0.3)';
@@ -97,10 +92,10 @@ const NumRegion = () => {
         <button onClick={handleCloseCarousel} type="button" class="btn btn-primary m-2 ">
           {showCarousel ? 'Hide Carousel' : 'Show Carousel'}
         </button>
-        <div  className=' p-3 content-center ' >
+        <div className=' p-3 content-center ' >
 
           {showCarousel && (
-           <div className='flex justify-center items-center'>
+            <div className='flex justify-center items-center'>
 
 
 
@@ -144,9 +139,9 @@ const NumRegion = () => {
                   </Carousel.Caption>
                 </Carousel.Item>
               </Carousel>
-              </div>
+            </div>
           )}
-          </div>
+        </div>
         {showContent && (
           <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
             <div className="bg-gray-300 p-4 rounded-md">

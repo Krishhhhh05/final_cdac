@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar';
 
-const Theory = () => {
+const Feedback = () => {
   return (
     <div className="min-h-screen p-10 justify-center">
       <h1 className="text-4xl font-bold mb-4 justify-center text-align-bottom-center">
@@ -9,10 +9,10 @@ const Theory = () => {
       </h1>
       <Navbar />
       <div>
-        <h3>theory</h3>
+        <h3>feedbacks</h3>
       </div>
     </div>
   )
 }
 
-export default Theory
+export default Feedback

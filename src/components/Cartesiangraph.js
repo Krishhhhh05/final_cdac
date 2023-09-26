@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 
 function Cartesiangraph() {
-  // State to store the selected point's coordinates
   const [selectedPoint, setSelectedPoint] = useState(null);
 
-  // Data for the graph
   const data = {
     labels: ['January', 'February', 'March', 'April', 'May'],
     datasets: [
@@ -18,7 +16,6 @@ function Cartesiangraph() {
     ],
   };
 
-  // Options for the graph
   const options = {
     scales: {
       x: {

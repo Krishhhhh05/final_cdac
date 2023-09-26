@@ -180,7 +180,7 @@ const Region = (props) => {
                                     </div>
                                     <br />
                                     <div className='flex justify-center items-center'>
-                                    <button className=" btn btn-lg btn-primary " onClick={handlePlot}>Plot</button>
+                                        <button className=" btn btn-lg btn-primary " onClick={handlePlot}>Plot</button>
                                     </div>
                                     <div className='flex justify-between mt-4' >
                                         <button type="button" className="btn btn-danger" onClick={checkred}>Red</button>
@@ -193,11 +193,11 @@ const Region = (props) => {
                     </div>
 
 
-                    
+
 
                 </div>
                 <div className="bg-gray-400 p-4 col-span-2 rounded-md">
-                <Plot className="float-left ml-5 px-4 my-4"
+                    <Plot className="float-left ml-5 px-4 my-4"
                         data={plotData}
                         layout={layout}
                         config={{ displayModeBar: false }}
@@ -208,8 +208,8 @@ const Region = (props) => {
                         <div id="graph" className="float-left ml-5 px-4 my-4">
                         </div>
                     )}
-</div>
-                
+                </div>
+
 
             </div>
         </>

@@ -77,7 +77,7 @@ const Quiz = () => {
                 setCurrentQuestion(0);
                 setScore(0);
                 setSelectedAnswer(null);
-            } 
+            }
         });
     };
 

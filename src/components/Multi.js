@@ -114,30 +114,30 @@ function Multi(props) {
                             <div className="a" ID="INPUT"><br />
                                 <label htmlFor="a" className="flex justify-center">Enter the slope: </label>
                                 <div className="flex items-center justify-center ">
-  <input
-    className="bg-white rounded-full m-2 p-2 text-center"
-    id="a"
-    name="a"
-    type="text"
-    placeholder="Enter Slope"
-    value={a}
-    onChange={handleInputChange}
-  />
-</div>
+                                    <input
+                                        className="bg-white rounded-full m-2 p-2 text-center"
+                                        id="a"
+                                        name="a"
+                                        type="text"
+                                        placeholder="Enter Slope"
+                                        value={a}
+                                        onChange={handleInputChange}
+                                    />
+                                </div>
 
                                 <br />
                                 <label htmlFor="b" className="flex justify-center">Enter the Intercept: </label>
                                 <div className="flex items-center justify-center ">
 
-                                <input
-                                    className="bg-white rounded-full m-2 p-2 text-center"
-                                    id="b"
-                                    name="b"
-                                    type="text"
-                                    placeholder='Enter Intercept'
-                                    value={b}
-                                    onChange={handleInputChange}
-                                />
+                                    <input
+                                        className="bg-white rounded-full m-2 p-2 text-center"
+                                        id="b"
+                                        name="b"
+                                        type="text"
+                                        placeholder='Enter Intercept'
+                                        value={b}
+                                        onChange={handleInputChange}
+                                    />
                                 </div>
                             </div>
                             <br />
