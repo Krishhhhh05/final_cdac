@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
 import { IoMdExit } from 'react-icons/io';
 import Navbar from './Navbar';
 
@@ -78,13 +77,9 @@ const Quiz = () => {
                 setCurrentQuestion(0);
                 setScore(0);
                 setSelectedAnswer(null);
-            } else {
-                navigate('/');
-            }
+            } 
         });
     };
-
-    const navigate = useNavigate();
 
     const renderOptions = () => {
         const options = questions[currentQuestion].options;
