@@ -34,7 +34,7 @@ function Workbench() {
         alert('Please provide a correct answer before proceeding.');
       }
     } else if (step === 6) {
-      navigate('/theory'); // Redirect to Theory Page
+      navigate('/theory');
     } else {
       setStep(step + 1);
     }
