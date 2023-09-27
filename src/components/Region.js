@@ -15,7 +15,6 @@ const Region = (props) => {
         }
         const x = [-10, 10];
         const y1 = x.map((xVal) => (-a * xVal - c) / b);
-
         const lineTrace = {
             x: x,
             y: y1,
