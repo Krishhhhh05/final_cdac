@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Plotly from 'plotly.js-basic-dist';
 import createPlotlyComponent from 'react-plotly.js/factory';
+import Swal from 'sweetalert2';
 
 const Plot = createPlotlyComponent(Plotly);
 
@@ -10,14 +11,29 @@ const NumberLine = () => {
   const [highlightedValue, setHighlightedValue] = useState(0);
 
   const handleInputChange = (event) => {
-    const inputValue = parseFloat(event.target.value);
-    if (!isNaN(inputValue) && inputValue >= -10 && inputValue <= 10) {
-      setHighlightedValue(inputValue);
+    const inputValue = event.target.value;
+  
+    if (/^[0-9]+$/.test(inputValue)) {
+      const numericValue = parseInt(inputValue, 10);
+  
+      if (numericValue >= -10 && numericValue <= 10) {
+        setHighlightedValue(numericValue);
+      } else {
+        Swal.fire({
+          title: 'Invalid Input',
+          text: 'Please enter an integer between -10 and 10',
+          icon: 'error',
+        });
+      }
     } else {
-      setHighlightedValue(null);
+      Swal.fire({
+        title: 'Invalid Input',
+        text: 'Please enter a valid integer',
+        icon: 'error',
+      });
     }
   };
-
+  
   const highlightIndex = xValues.indexOf(highlightedValue);
   const leftIndices = xValues.slice(0, highlightIndex);
   const rightIndices = xValues.slice(highlightIndex + 1);
@@ -97,9 +113,10 @@ const NumberLine = () => {
             type="number"
             min="-10"
             max="10"
-            step="0.1"
+            step="1"
             onChange={handleInputChange}
             className='m-2 p-2 rounded-sm'
+            
           />
         </div>
         <div className='w-full flex justify-center'> {/* Maximize width of the graph */}

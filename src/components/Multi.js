@@ -53,7 +53,6 @@ function Multi(props) {
     async function checkAnswer(color) {
         if (a === '' || b === '') {
             Swal.fire('Enter Values', 'Please enter values for slope and intercept before selecting an option.', 'warning');
-            return;
         }
         if (color === correctAnswer) {
             props.setAnswerCorrect(true);
@@ -141,13 +140,13 @@ function Multi(props) {
                                 </div>
                             </div>
                             <br />
-                            <div className="flex justify-align">
+                            <div className="flex justify-between">
                                 {randomColors.map((color, index) => (
                                     <button
                                         key={index}
                                         type="button"
-                                        className={`btn ${color === correctAnswer ? 'btn-success' : 'btn-danger'} mx-2`}
                                         style={{ backgroundColor: color }}
+                                        className='p-2 rounded-lg text-white'
                                         onClick={() => checkAnswer(color)}
                                     >
                                         {color.charAt(0).toUpperCase() + color.slice(1)}

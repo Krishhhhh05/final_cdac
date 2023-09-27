@@ -32,7 +32,7 @@ const Linechart = ({ nextStep }) => {
 
   const handleNumberLineClick = (event) => {
     const clickedValue = event.points[0].x;
-
+  
     if (clickedValue === currentTargetValue) {
       if (guessedTargets.length === targetValues.length - 1) {
         Swal.fire({
@@ -43,7 +43,7 @@ const Linechart = ({ nextStep }) => {
           confirmButtonText: 'Okay',
         }).then((result) => {
           if (result.isConfirmed) {
-            nextStep();
+            // nextStep();
           }
         });
       } else {
@@ -52,7 +52,7 @@ const Linechart = ({ nextStep }) => {
           icon: 'success',
         }).then(() => {
           setGuessedTargets([...guessedTargets, currentTargetValue]);
-
+  
           const nextTargetIndex = targetValues.indexOf(currentTargetValue) + 1;
           if (nextTargetIndex < targetValues.length) {
             setCurrentTargetValue(targetValues[nextTargetIndex]);
@@ -60,14 +60,19 @@ const Linechart = ({ nextStep }) => {
         });
       }
     } else {
+      const message = clickedValue < currentTargetValue
+        ? `Shift to the RIGHT.`
+        : `Shift to the LEFT.`;
+  
       Swal.fire({
         title: 'Incorrect!',
-        text: 'Try again.',
+        text: message,
         icon: 'error',
       });
     }
   };
-
+  
+  
   const numberLineData = [
     {
       x: xValues,
