@@ -25,13 +25,13 @@ function Workbench() {
             if (answerCorrect) {
                 await showMultiStepAlert();
             } else {
-                alert('Please provide a correct answer before proceeding.');
+                Swal.fire('Warning!', `Please provide a correct answer before proceeding.`, 'warning');
             }
         } else if (step === 5) {
             if (answerCorrect) {
                 await showRegionStepAlert();
             } else {
-                alert('Please provide a correct answer before proceeding.');
+                Swal.fire('Warning!', `Please provide a correct answer before proceeding.`, 'warning');
             }
         } else if (step === 6) {
             navigate('/theory'); // Redirect to Theory Page
@@ -56,18 +56,18 @@ function Workbench() {
 
     const showRegionStepAlert = async () => {
         await Swal.fire({
-            title: 'Region Step',
-            text: 'This is the next region alert.',
-            icon: 'info',
+            title: 'Horaay!! ',
+            text: 'You have completed the expirement',
+            icon: 'success',
             confirmButtonText: 'Okay'
         });
 
         if (answerCorrect) {
-            const nextStep = 0; // Redirect to Landing Page
+            const nextStep = 0;
             setStep(nextStep);
             setProgress((nextStep / totalSteps) * 100);
         } else {
-            alert('Please provide a correct answer before proceeding.');
+            Swal.fire('Warning!', `Please provide a correct answer before proceeding.`, 'warning');
         }
     };
 
@@ -91,10 +91,11 @@ function Workbench() {
                 return <Multi setAnswerCorrect={setAnswerCorrect} />;
             case 5:
                 return <Region setAnswerCorrect={setAnswerCorrect} handleNext={handleNext} />;
-            case 6:
-                return <Linechart />;
+            // case 6:
+            //     return <Linechart />;
             default:
-                return <Multi setAnswerCorrect={setAnswerCorrect} />;
+                // return <Multi setAnswerCorrect={setAnswerCorrect} />;
+                return <Region setAnswerCorrect={setAnswerCorrect} handleNext={handleNext} />;
         }
     };
 
@@ -102,23 +103,42 @@ function Workbench() {
         <div className="min-h-screen p-10 justify-center">
             <h1 className="text-4xl font-bold mb-4 justify-center text-align-bottom-center">INEQUATIONS IN TWO VARIABLES</h1>
             <Navbar />
-            <div className="bg-gray-300 rounded-lg h-6 mb-4">
+            <div className="bg-gray-300 rounded-lg h-6 mb-4 relative mt-2">
                 <div
                     className="h-full bg-blue-500 rounded-lg"
                     style={{ width: `${progress}%` }}
                 />
+                <div className="absolute inset-0 flex items-center justify-center text-white font-bold">
+                    Step: {step} / 5
+                </div>
             </div>
+
             <div className="bg-gray-200 rounded-lg flex flex-col h-2/3">
                 {renderStep()}
-                <div className="flex items-center justify-center h-full">
-                    <button
-                        type="button"
-                        className="btn btn-primary m-2 flex items-center justify-center"
-                        onClick={handleNext}
-                    >
-                        Next
-                    </button>
-                </div>
+                {step===5  &&
+                 <div className="flex items-center justify-center h-full">
+                 <button
+                     type="button"
+                     className="btn btn-primary m-2 flex items-center justify-center"
+                     onClick={handleNext}
+                 >
+                     Finish
+                 </button>
+             </div>}
+                
+                
+                   
+             {  ( step ===0 ||step ===1 || step ===2 || step ===3 || step ===4)  &&
+            <div className="flex items-center justify-center h-full">
+                <button
+                    type="button"
+                    className="btn btn-primary m-2 flex items-center justify-center"
+                    onClick={handleNext}
+                >
+                    Next
+                </button>
+            </div>
+} 
             </div>
         </div>
     );
