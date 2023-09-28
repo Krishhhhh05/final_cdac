@@ -53,7 +53,7 @@ function Multi(props) {
         }
         if (color === correctAnswer) {
             props.setAnswerCorrect(true);
-            Swal.fire('Correct!', `Your answer is correct!`, 'success');
+            Swal.fire('Correct Answer!', `Your answer is correct!`, 'success');
             setA('');
             setB('');
 
@@ -73,8 +73,8 @@ function Multi(props) {
         } else {
             Swal.fire({
                 icon: 'error',
-                title: 'Incorrect!',
-                text: `Your answer is incorrect. `,
+                title: 'Incorrect Answer!',
+                text: `Recheck the signs of 'a' and 'b' and then select the right plot. `,
                 showCancelButton: false,
                 confirmButtonText: 'Okay',
             });

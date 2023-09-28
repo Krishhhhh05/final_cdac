@@ -8,9 +8,6 @@ import Multi from './components/Multi';
 import Region from './components/Region';
 import Linechart from './components/Linechart';
 import NumberLine from './components/NumberLine';
-import Cartesiangraph from './components/Cartesiangraph';
-import Mainflow from './components/Mainflow';
-import Steps from './components/Steps';
 import NumRegion from './components/NumRegion';
 import Animation from './components/Animation';
 import Theory from './components/Theory';
@@ -29,9 +26,6 @@ function App() {
     <Route path='/region' element={<Region />}/>
     <Route path='/linechart' element={<Linechart />}/>
     <Route path='/numberline' element={<NumberLine />}/>
-    <Route path='/cartesian' element={<Cartesiangraph />}/>
-    <Route path='/mainflow' element={<Mainflow />}/>
-    <Route path='/steps' element={<Steps />}/>
     <Route path='/numregion' element={<NumRegion />}/>
     <Route path='/quiz' element={<Quiz />}/>
     <Route path='/theory' element={<Theory />}/>

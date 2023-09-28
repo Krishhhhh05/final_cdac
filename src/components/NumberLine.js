@@ -5,19 +5,20 @@ import Swal from 'sweetalert2';
 
 const Plot = createPlotlyComponent(Plotly);
 
-const NumberLine = () => {
+const NumberLine = ({ onInputProvided }) => {
   const xValues = Array.from({ length: 21 }, (_, index) => index - 10);
 
   const [highlightedValue, setHighlightedValue] = useState(0);
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
-  
+
     if (/^[0-9]+$/.test(inputValue)) {
       const numericValue = parseInt(inputValue, 10);
-  
+
       if (numericValue >= -10 && numericValue <= 10) {
         setHighlightedValue(numericValue);
+        onInputProvided(); 
       } else {
         Swal.fire({
           title: 'Invalid Input',
@@ -33,7 +34,7 @@ const NumberLine = () => {
       });
     }
   };
-  
+
   const highlightIndex = xValues.indexOf(highlightedValue);
   const leftIndices = xValues.slice(0, highlightIndex);
   const rightIndices = xValues.slice(highlightIndex + 1);
@@ -98,15 +99,15 @@ const NumberLine = () => {
         <div className='p-4'>
           <h4 className='flex justify-center items-center'>Instructions</h4>
           <p>
-            <ul class="list-disc">
+            <ul className="list-disc">
               <li>Enter any value from the number appearing in the graph in the input box</li>
-              <li>You can now see the poitive and negative values respectively</li>
+              <li>You can now see the positive and negative values respectively</li>
             </ul>
           </p>
         </div>
       </div>
       <div className="bg-gray-400 p-4 col-span-2 rounded-md">
-        <h4 className='flex justify-center items-center'> Visualizing Positive and Pegative values on a numberline</h4>
+        <h4 className='flex justify-center items-center'> Visualizing Positive and Negative values on a numberline</h4>
         <div className='flex justify-center items-center'>
           <label>Highlight a Value: </label>
           <input
@@ -116,7 +117,6 @@ const NumberLine = () => {
             step="1"
             onChange={handleInputChange}
             className='m-2 p-2 rounded-sm'
-            
           />
         </div>
         <div className='w-full flex justify-center'> {/* Maximize width of the graph */}

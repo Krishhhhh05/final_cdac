@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import Plotly from 'plotly.js-basic-dist';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import Swal from 'sweetalert2';
 
 const Plot = createPlotlyComponent(Plotly);
 
-const Linechart = ({ nextStep }) => {
+const Linechart = ({ nextStep, correctGuesses, setCorrectGuesses }) => {
+
   const generateRandomUniqueValue = (min, max, exclude) => {
     let randomValue;
     do {
@@ -33,47 +34,47 @@ const Linechart = ({ nextStep }) => {
 
   const handleNumberLineClick = (event) => {
     const clickedValue = event.points[0].x;
-  
+
     if (clickedValue === currentTargetValue) {
-      if (guessedTargets.length === targetValues.length - 1) {
-        Swal.fire({
-          title: 'You can now move ahead!',
-          icon: 'success',
-          showCancelButton: false,
-          showConfirmButton: true,
-          confirmButtonText: 'Okay',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // nextStep();
-          }
-        });
-      } else {
-        Swal.fire({
-          title: 'Correct!',
-          icon: 'success',
-        }).then(() => {
-          setGuessedTargets([...guessedTargets, currentTargetValue]);
-  
-          const nextTargetIndex = targetValues.indexOf(currentTargetValue) + 1;
-          if (nextTargetIndex < targetValues.length) {
-            setCurrentTargetValue(targetValues[nextTargetIndex]);
-          }
-        });
-      }
+      Swal.fire({
+        title: 'Correct Answer!',
+        icon: 'success',
+      }).then(() => {
+        setGuessedTargets([...guessedTargets, currentTargetValue]);
+
+        const nextTargetIndex = targetValues.indexOf(currentTargetValue) + 1;
+        if (nextTargetIndex < targetValues.length) {
+          setCurrentTargetValue(targetValues[nextTargetIndex]);
+        }
+
+        setCorrectGuesses(prevCorrectGuesses => prevCorrectGuesses + 1);
+        if (correctGuesses >= 3) {
+          Swal.fire({
+            title: 'You can now move ahead!',
+            icon: 'success',
+            showCancelButton: false,
+            showConfirmButton: true,
+            confirmButtonText: 'Okay',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              nextStep(); 
+            }
+          });
+        }
+      });
     } else {
       const message = clickedValue < currentTargetValue
         ? `Shift to the RIGHT.`
         : `Shift to the LEFT.`;
-  
+
       Swal.fire({
-        title: 'Incorrect!',
+        title: 'Incorrect Answer!',
         text: message,
         icon: 'error',
       });
     }
   };
-  
-  
+
   const numberLineData = [
     {
       x: xValues,
@@ -83,10 +84,6 @@ const Linechart = ({ nextStep }) => {
       marker: { size: 20, color: 'blue' },
     },
   ];
-
-  useEffect(() => {
-    setCurrentTargetValue(targetValues[0]);
-  }, [targetValues]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">

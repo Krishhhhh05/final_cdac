@@ -27,9 +27,9 @@ function Navbar() {
                         <div class="nav-link active" aria-current="page" >Self Evaluation</div>
                     </li>
                 </Link>
-                <Link to="/ref" title="Referances">
+                <Link to="/ref" title="References">
                     <li class="nav-item">
-                        <div class="nav-link active" aria-current="page" href="#">Referances</div>
+                        <div class="nav-link active" aria-current="page" href="#">References</div>
                     </li>
                 </Link>
                 <Link to="/feedback" title="Feedback">

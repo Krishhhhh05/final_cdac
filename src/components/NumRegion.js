@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import Carousel from 'react-bootstrap/Carousel';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const NumRegion = () => {
   const [a, setA] = useState('');
@@ -69,7 +70,6 @@ const NumRegion = () => {
   const [showCarousel, setShowCarousel] = useState(true);
   const [showContent, setShowContent] = useState(false);
 
-
   const handleCloseCarousel = () => {
     if (showCarousel) {
       setShowCarousel(false);
@@ -79,65 +79,73 @@ const NumRegion = () => {
       setShowContent(false);
     }
   };
-  const [index, setIndex] = useState(0);
-
-  const handleSelect = (selectedIndex) => {
-    setIndex(selectedIndex);
-  };
-
 
   return (
     <>
       <div className='App'>
-        <button onClick={handleCloseCarousel} type="button" class="btn btn-primary m-2 ">
-          {showCarousel ? 'Hide Carousel' : 'Show Carousel'}
-        </button>
+
         <div className=' p-3 content-center ' >
 
           {showCarousel && (
-            <div className='flex justify-center items-center'>
+            <div className=''>
+              <Carousel
+                showThumbs={false}
+                showStatus={false}
+                showIndicators={false}
+                infiniteLoop={true}
+                autoPlay={true}
+                interval={5000}
+                stopOnHover={false}
+                transitionTime={500}
+                className="w-96 h-96 bg-gray-300 flex justify-center items-center" // Set fixed width, height, and background color
+              >
+                <div className=''>
+                  <div className="flex items-center">
+                    <img
+                      src="https://media.geeksforgeeks.org/wp-content/uploads/20210418220253/Screenshot20210418at100243PM.png"
+                      alt="Image 1"
+                      className=" object-cover "
+                    /> </div>
+                  <p
+                    className=" bg-black bg-opacity-60 text-white text-center text-sm"
+                    style={{ pointerEvents: 'none' }}
+                  >
+                    Here we saw the graph of a linear inequality in one variable.
+                  </p>                         </div>
 
+                <div className="">
+                  <div className='flex justify-center items-center'>
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.GjmJdZIz6kRWmXg0SK9SpwHaEw%26pid%3DApi&f=1&ipt=0c3bde0f4555a41fd6dd897251de136a4c16aa4b46e75a10b20762c18a041954&ipo=images                    " alt="Image 2" className=" object-cover flex justify-center items-center" />
+                  </div><p className=" bg-black bg-opacity-60 text-white text-center text-sm" style={{ pointerEvents: 'none' }} > We will now explore 2 dimensions     </p> </div>
 
-
-              <Carousel activeIndex={index} onSelect={handleSelect} interval={5000}>
-
-                <Carousel.Item>
+                <div className="">
                   <img
-                    className="d-block"
-                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.rvSWtRd_oPRTwDoTCmkP5gHaE8%26pid%3DApi&f=1&ipt=b720442f6ab6e413907bad8cfb489afed5095d4e724bf072470136e85d430f06&ipo=images"
-                    alt="3D Plane"
+                    src="https://media.geeksforgeeks.org/wp-content/uploads/20210418220538/Screenshot20210418at100457PM.png"
+                    alt="Image 2"
+                    className=" object-cover flex justify-center items-center"
                   />
-                  <Carousel.Caption>
-                    <h3 className="text-success fw-bolder fs-3">3D Plane</h3>
-                    <p className="text-muted fs-6 fw-bold">
-                      A plane in 3D coordinate space is a flat surface that extends indefinitely containing a vector that is perpendicular to the plane called as the normal.
-                    </p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
+                  <p
+                    className=" bg-black bg-opacity-60 text-white text-center text-sm"
+                    style={{ pointerEvents: 'none' }}
+                  >
+                    A linear equation in two variables represents a line that divides the plane into two parts.We call each part a half-plane.
+                    If the line is vertical, it will divide the plane into the left half-plane and the right half-plane
+                  </p>
+                </div>
+
+
+                <div className="relative h-full flex justify-center items-center">
                   <img
-                    className="d-block"
-                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.ZO4TmUbxM5-V1R7bbDpMHQHaEK%26pid%3DApi&f=1&ipt=1b90e9c843316a081f822f4cb672b1d44b4f201f4a9cfaca6a96927ddea4394c&ipo=images"
-                    alt="Angle Between Planes"
+                    src="https://media.geeksforgeeks.org/wp-content/uploads/20210418220553/Screenshot20210418at100527PM.png"
+                    alt="Image 2"
+                    className=" object-cover flex justify-center items-center"
                   />
-                  <Carousel.Caption>
-                    <h3 className="text-success fw-bolder fs-3">Angle Between Planes</h3>
-                    <p className="text-muted fs-6 fw-bold">
-                      The angle between two planes is equal to the angle between their normals.
-                    </p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img
-                    className="d-block"
-                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.bPBCgvp9N0SUbVYJnBg2IQHaEo%26pid%3DApi&f=1&ipt=1ed7532ff69f93a73e18f28cbbcaa6770be3ea6ce8c9713811f5161fbe387718&ipo=images"
-                    alt="Pup"
-                  />
-                  <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
+                  <p
+                    className="absolute inset-x-0 bottom-1 p-2 bg-black bg-opacity-60 text-white text-center text-sm"
+                    style={{ pointerEvents: 'none' }}
+                  >
+                    A non-vertical line divide the plane into the upper left half-plane and lower half-plane.           </p>
+                </div>
               </Carousel>
             </div>
           )}
@@ -145,18 +153,27 @@ const NumRegion = () => {
         {showContent && (
           <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
             <div className="bg-gray-300 p-4 rounded-md">
-              {/* Content for the left grid */}
-              <div className='p-4'>
-                <h4> Instructions</h4>
+              <div className='p-2'>
+                <div className="flex flex-row justify-between items-center">
+                  <div className='font-bold text-2xl ml-2'>Instructions</div>
+                  <div>
+                    <button onClick={handleCloseCarousel} type="button" className="btn btn-primary m-2">
+                      {showCarousel ? 'Hide' : 'Hint'}
+                    </button>
+                  </div>
+                </div>
                 <p>
                   <ul class="list-disc">
-                    <li> Correctly choose the target values</li>
+                    <li> Previously we visualized the values in 1 dimension <p>( X- Axis)</p></li>
+                    <li> Now we will visualize the same in 2 dimensions <p>( X & Y Axis) </p></li>
+                    <li> We will use the equation X- a = 0 </li>
+                    <li> Enter 'a' as the input </li>
                   </ul>
                   <div id="input" className=" ">
                     <h1 className="font-bold text-lg text-center">Plotting Equations</h1>
                     <label>a:<input className="bg-white rounded-full mx-2 my-6 px-3" type="number" value={a} placeholder="Enter a to plot X - a > 0 " onChange={(event) => setA(parseFloat(event.target.value))} /> </label>
-                    <button className="btn btn-lg btn-primary mx-8 my-8" onClick={handlePlot}> Plot</button>
-
+                    <p><button className="btn btn-lg btn-primary mx-8 my-8" onClick={handlePlot}> Plot</button>
+                    </p>
                   </div>
                 </p>
               </div>
@@ -170,8 +187,6 @@ const NumRegion = () => {
                 style={{ width: '700px', height: '500px' }}
               />
             </div>
-
-
           </div>
         )}
       </div>
