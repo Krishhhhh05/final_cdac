@@ -26,7 +26,6 @@ const Graph1 = () => {
       name: 'Line',
     };
 
-    // Create a layout for the plot
     const layout = {
       title: 'Line Plot',
       xaxis: {

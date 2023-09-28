@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Plot from 'react-plotly.js';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Multi(props) {
@@ -48,8 +47,6 @@ function Multi(props) {
         }
     }
 
-    const navigate = useNavigate();
-
     async function checkAnswer(color) {
         if (a === '' || b === '') {
             Swal.fire('Enter Values', 'Please enter values for slope and intercept before selecting an option.', 'warning');
@@ -74,16 +71,13 @@ function Multi(props) {
             }
             setRandomColors(randomizedColors);
         } else {
-            const result = await Swal.fire({
+            Swal.fire({
                 icon: 'error',
                 title: 'Incorrect!',
-                text: `Your answer is incorrect. What would you like to do?`,
-                showCancelButton: true,
-                confirmButtonText: 'Retry',
+                text: `Your answer is incorrect. `,
+                showCancelButton: false,
+                confirmButtonText: 'Okay',
             });
-            if (result.isConfirmed) {
-                navigate('/theory1');
-            }
         }
     }
 
