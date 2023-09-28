@@ -87,7 +87,13 @@ const NumRegion = () => {
         <div className=' p-3 content-center ' >
 
           {showCarousel && (
-            <div className=''>
+         <div className=''>
+         <div className='m-3'>
+         <button onClick={handleCloseCarousel} type="button" className="btn btn-primary m-2">
+       {showCarousel ? 'Hide' : 'Hint'}
+     </button>
+     </div>
+
               <Carousel
                 showThumbs={false}
                 showStatus={false}

@@ -7,6 +7,9 @@ const Region = (props) => {
     const [b, setB] = useState('');
     const [c, setC] = useState('');
     const [plotData, setPlotData] = useState(null);
+    const [ setAnswerCorrect5] = useState(true);
+    const [points, setPoints] = useState(0);
+
 
     const handlePlot = () => {
         if (a === '' || b === '' || c === '' || isNaN(a) || isNaN(b) || isNaN(c)) {
@@ -68,17 +71,18 @@ const Region = (props) => {
 
     const checkred = async () => {
         if (a === '' || b === '' || c === '' || isNaN(a) || isNaN(b) || isNaN(c)) {
-            Swal.fire('Missing Values', 'Please enter values for slope and intercept before selecting an option.', 'warning');
+            Swal.fire('Missing Values', 'Please enter values for a,b and c before selecting an option.', 'warning');
             return;
         }
         if (a > 0 && b > 0 && c > 0) {
-            props.setAnswerCorrect(true);
+            setAnswerCorrect5(true);
+            setPoints(points + 1);
             await Swal.fire('Correct Answer!', `Your answer is correct!`, 'success');
             setA('');
             setB('');
             setC('');
         } else {
-            props.setAnswerCorrect(false);
+            setAnswerCorrect5(false);
             await Swal.fire({
                 icon: 'error',
                 title: 'Incorrect Answer!',
@@ -94,13 +98,14 @@ const Region = (props) => {
             return;
         }
         if (a < 0 || b < 0 || c < 0) {
-            props.setAnswerCorrect(true);
+            setAnswerCorrect5(true);
+            setPoints(points + 1);
             await Swal.fire('Correct Answer!', `Your answer is correct!`, 'success');
             setA('');
             setB('');
             setC('');
         } else {
-            props.setAnswerCorrect(false);
+            setAnswerCorrect5(false);
             await Swal.fire({
                 icon: 'error',
                 title: 'Incorrect Answer!',
@@ -131,68 +136,58 @@ const Region = (props) => {
         <>
             <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
                 <div className="bg-gray-300 p-4 rounded-md">
-                    {/* Content for the left grid */}
                     <div className='p-4'>
                         <h4> Instructions</h4>
                         <p>
                             <ul class="list-disc">
-                                <li> Correctly choose the target values</li>
+                                <li>You have to select the section of the graph that represents the inequation Ax+By+C{'>'}0.</li>
+                                <li>First you have to enter the values of A, B and C respectively and select a point arbitrarily to check the section.</li>
+                                <li>Substitute the values of the X and Y co-ordinates in the equation and If the derived value of the expression is less than zero then the point lies in the negative region or else in the positive region.</li>
                             </ul>
                         </p>
                         <div className="">
+
                             <div id="input" className="">
-                                <h1 className="font-bold text-lg text-center">Shading the region</h1>
-                                <br />Here we use the equation-
-                                <img src="../assets/main.png" alt="main_eq" style={{ align: 'center', width: '70%', height: '2%', }}></img>
-                                The entire graph is divided into 2 parts and shaded positive or negative according to the equation.
-                                Identify the Region which represents the positive region i.e. <br /><b>a</b> 0
-                                <br /><br />
-                                <div id="input" className="">
-                                    <h1 className="font-bold text-lg text-center"><br />Input</h1>
-                                    <div className='flex justify-center items-center'>
-                                        a:
-                                        <input className='bg-white rounded-full mx-2 my-6 px-3'
-                                            type="number"
-                                            value={a}
-                                            placeholder='Enter A'
-                                            onChange={(event) => setA(event.target.value)}
-                                        />
-                                    </div>
-                                    <div className='flex justify-center items-center'>
-                                        b:
-                                        <input className='bg-white rounded-full mx-2 my-6 px-3'
-                                            type="number"
-                                            value={b}
-                                            placeholder='Enter B'
-                                            onChange={(event) => setB(event.target.value)}
-                                        />
-                                    </div>
-                                    <div className='flex justify-center items-center'>
-                                        c:
-                                        <input className='bg-white rounded-full mx-2 my-6 px-3'
-                                            type="number"
-                                            value={c}
-                                            placeholder='Enter C'
-                                            onChange={(event) => setC(event.target.value)}
-                                        />
-                                    </div>
-                                    <br />
-                                    <div className='flex justify-center items-center'>
-                                        <button className=" btn btn-lg btn-primary " onClick={handlePlot}>Plot</button>
-                                    </div>
-                                    <div className='flex justify-between mt-4' >
-                                        <button type="button" className="btn btn-danger" onClick={checkred}>Red</button>
-                                        <button type="button" className="btn btn-success" onClick={checkgreen}>Green</button>
-                                    </div>
-                                    <br />
+                                <h1 className="font-bold text-lg text-center"><br />Input</h1>
+                                <div className='flex justify-center items-center'>
+                                    a:
+                                    <input className='bg-white rounded-full mx-2 my-6 px-3'
+                                        type="number"
+                                        value={a}
+                                        placeholder='Enter A'
+                                        onChange={(event) => setA(event.target.value)}
+                                    />
                                 </div>
+                                <div className='flex justify-center items-center'>
+                                    b:
+                                    <input className='bg-white rounded-full mx-2 my-6 px-3'
+                                        type="number"
+                                        value={b}
+                                        placeholder='Enter B'
+                                        onChange={(event) => setB(event.target.value)}
+                                    />
+                                </div>
+                                <div className='flex justify-center items-center'>
+                                    c:
+                                    <input className='bg-white rounded-full mx-2 my-6 px-3'
+                                        type="number"
+                                        value={c}
+                                        placeholder='Enter C'
+                                        onChange={(event) => setC(event.target.value)}
+                                    />
+                                </div>
+                                <br />
+                                <div className='flex justify-center items-center'>
+                                    <button className=" btn btn-lg btn-primary " onClick={handlePlot}>Plot</button>
+                                </div>
+                                <div className='flex justify-between mt-4' >
+                                    <button type="button" className="btn btn-danger" onClick={checkred}>Red</button>
+                                    <button type="button" className="btn btn-success" onClick={checkgreen}>Green</button>
+                                </div>
+                                <br />
                             </div>
                         </div>
                     </div>
-
-
-
-
                 </div>
                 <div className="bg-gray-400 p-4 col-span-2 rounded-md">
                     <Plot className="float-left ml-5 px-4 my-4"
@@ -207,9 +202,8 @@ const Region = (props) => {
                         </div>
                     )}
                 </div>
-
-
             </div>
+
         </>
     );
 };
