@@ -72,7 +72,7 @@ const Region = (props) => {
         }
         if (a > 0 && b > 0 && c > 0) {
             props.setAnswerCorrect(true);
-            await Swal.fire('Correct!', `Your answer is correct!`, 'success');
+            await Swal.fire('Correct Answer!', `Your answer is correct!`, 'success');
             setA('');
             setB('');
             setC('');
@@ -80,8 +80,8 @@ const Region = (props) => {
             props.setAnswerCorrect(false);
             await Swal.fire({
                 icon: 'error',
-                title: 'Incorrect!',
-                text: `Your answer is incorrect. Please provide the correct answer.`,
+                title: 'Incorrect Answer!',
+                text: `Check the signs of a, b and c and use the Arbitary Point method to determine the answer.`,
                 confirmButtonText: 'OK',
             });
         }
@@ -94,7 +94,7 @@ const Region = (props) => {
         }
         if (a < 0 || b < 0 || c < 0) {
             props.setAnswerCorrect(true);
-            await Swal.fire('Correct!', `Your answer is correct!`, 'success');
+            await Swal.fire('Correct Answer!', `Your answer is correct!`, 'success');
             setA('');
             setB('');
             setC('');
@@ -102,8 +102,8 @@ const Region = (props) => {
             props.setAnswerCorrect(false);
             await Swal.fire({
                 icon: 'error',
-                title: 'Incorrect!',
-                text: `Your answer is incorrect. Please provide the correct answer.`,
+                title: 'Incorrect Answer!',
+                text: `Check the signs of a, b and c and use the Arbitary Point method to determine the answer.`,
                 confirmButtonText: 'OK',
             });
         }
@@ -125,8 +125,6 @@ const Region = (props) => {
         },
         showlegend: false,
     };
-
-    // const navigate = useNavigate();
 
     return (
         <>

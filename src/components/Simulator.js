@@ -15,6 +15,9 @@ function Workbench() {
     const totalSteps = 6;
     const [progress, setProgress] = useState(0);
     const navigate = useNavigate();
+    const [correctGuesses, setCorrectGuesses] = useState(0);
+    const [inputProvided, setInputProvided] = useState(false);
+    
 
     useEffect(() => {
         setProgress((step / totalSteps) * 100);
@@ -34,9 +37,24 @@ function Workbench() {
                 Swal.fire('Warning!', `Please provide a correct answer before proceeding.`, 'warning');
             }
         } else if (step === 6) {
-            navigate('/theory'); // Redirect to Theory Page
+            navigate('/theory');
         } else {
-            setStep(step + 1);
+            if (step === 0) {
+                setStep(step + 1);
+            } else if (step === 1 && correctGuesses < 3) {
+                Swal.fire('Warning!', 'Please complete all steps before proceeding.', 'warning');
+            } else if (step === 1 && correctGuesses >= 3) {
+                setStep(step + 1);
+            } else if (step === 2) {
+                if (inputProvided) {
+                    setStep(step + 1);
+                } else {
+                    Swal.fire('Warning!', 'Please provide an input value before proceeding.', 'warning');
+                }
+            }
+            else {
+                setStep(step + 1);
+            }
         }
     };
 
@@ -79,18 +97,38 @@ function Workbench() {
                         <h1 className="text-4xl font-bold mb-4 text-center">
                             START SIMULATION
                         </h1>
+                        <div className="min-h-screen p-10 justify-center">
+                            <h1 className="text-4xl font-bold mb-4 text-center">
+                                Graphical representation of Ax+By+C{'>'}0
+                            </h1>
+                            <center>
+                                <h2><b>Objective:</b></h2>
+                                <h4>To plot the section represented by Ax+By+C{'>'}0 on a graph.</h4>
+                                <br></br>
+                                <br></br>
+
+                                <h2><b>Learning Outcome:</b></h2>
+                                <h4>Students will be able to identify the section on the graph that represents the given inequality of the type Ax+By+C{'>'}0.</h4>
+                                <br></br>
+                                <br></br>
+
+                                <h4>With the help of the following steps we will be learning how to plot the section represented by Ax+By+C{'>'}0 on a graph:</h4>
+                                <br></br>
+                                <br></br>
+                            </center>
+                        </div>
                     </div>
                 )
             case 1:
-                return <Linechart />;
+                return <Linechart nextStep={handleNext} correctGuesses={correctGuesses} setCorrectGuesses={setCorrectGuesses} />;
             case 2:
-                return <NumberLine />;
+                return <NumberLine onInputProvided={() => setInputProvided(true)} />
             case 3:
                 return <NumRegion />;
             case 4:
                 return <Multi setAnswerCorrect={setAnswerCorrect} />;
             case 5:
-                return <Region setAnswerCorrect={setAnswerCorrect} handleNext={handleNext} />;
+                return <Region onClick={handleNext} disabled={!answerCorrect} />;
             // case 6:
             //     return <Linechart />;
             default:
@@ -115,30 +153,30 @@ function Workbench() {
 
             <div className="bg-gray-200 rounded-lg flex flex-col h-2/3">
                 {renderStep()}
-                {step===5  &&
-                 <div className="flex items-center justify-center h-full">
-                 <button
-                     type="button"
-                     className="btn btn-primary m-2 flex items-center justify-center"
-                     onClick={handleNext}
-                 >
-                     Finish
-                 </button>
-             </div>}
-                
-                
-                   
-             {  ( step ===0 ||step ===1 || step ===2 || step ===3 || step ===4)  &&
-            <div className="flex items-center justify-center h-full">
-                <button
-                    type="button"
-                    className="btn btn-primary m-2 flex items-center justify-center"
-                    onClick={handleNext}
-                >
-                    Next
-                </button>
-            </div>
-} 
+
+                {step === 5 &&
+                    <div className="flex items-center justify-center h-full">
+                        <button
+                            type="button"
+                            className="btn btn-primary m-2 flex items-center justify-center"
+                            onClick={handleNext}
+                            disabled={!answerCorrect} 
+                        >
+                            Finish
+                        </button>
+                    </div>}
+
+                {(step === 0 || step === 1 || step === 2 || step === 3 || step === 4) &&
+                    <div className="flex items-center justify-center h-full">
+                        <button
+                            type="button"
+                            className="btn btn-primary m-2 flex items-center justify-center"
+                            onClick={handleNext}
+                        >
+                            Next
+                        </button>
+                    </div>
+                }
             </div>
         </div>
     );
