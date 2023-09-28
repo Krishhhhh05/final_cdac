@@ -9,7 +9,7 @@ import NumberLine from './NumberLine';
 import NumRegion from './NumRegion';
 import { useNavigate } from 'react-router-dom';
 
-function Workbench() {
+function Simulator() {
     const [step, setStep] = useState(0);
     const [answerCorrect, setAnswerCorrect] = useState(false);
     const totalSteps = 6;
@@ -182,4 +182,4 @@ function Workbench() {
     );
 }
 
-export default Workbench;
+export default Simulator;
