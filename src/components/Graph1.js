@@ -21,7 +21,7 @@ const Graph1 = () => {
     const lineTrace = {
       x: x,
       y: y,
-      mode: 'lines+markers', // Use 'lines+markers' mode to display both the line and points
+      mode: 'lines+markers', 
       name: 'Line',
     };
 
