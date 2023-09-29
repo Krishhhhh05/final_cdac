@@ -9,6 +9,7 @@ const Graph1 = () => {
   const [selectedPoint, setSelectedPoint] = useState(null);
 
   const handlePlot = () => {
+    // Calculate slope and intercept
     const slope = (y2 - y1) / (x2 - x1);
     const intercept = y1 - slope * x1;
 
