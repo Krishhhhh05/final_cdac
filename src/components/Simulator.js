@@ -26,7 +26,8 @@ function Simulator() {
     const handleNext = async () => {
         if (step === 4) {
             if (answerCorrect) {
-                await showMultiStepAlert();
+                // await showMultiStepAlert();
+                setStep(step + 1);
             } else {
                 Swal.fire('Warning!', `Please provide a correct answer before proceeding.`, 'warning');
             }
@@ -42,7 +43,7 @@ function Simulator() {
             if (step === 0) {
                 setStep(step + 1);
             } else if (step === 1 && correctGuesses < 3) {
-                Swal.fire('Warning!', 'Please complete all steps before proceeding.', 'warning');
+                Swal.fire('Warning!', 'Please guess three values before proceeding.', 'warning');
             } else if (step === 1 && correctGuesses >= 3) {
                 setStep(step + 1);
             } else if (step === 2) {
@@ -58,19 +59,19 @@ function Simulator() {
         }
     };
 
-    const showMultiStepAlert = async () => {
-        await Swal.fire({
-            title: 'Arbitrary Point Step',
-            text: 'Add your arbitrary point instructions here...',
-            icon: 'info',
-            confirmButtonText: 'Okay'
-        });
+    // const showMultiStepAlert = async () => {
+    //     await Swal.fire({
+    //         title: 'Arbitrary Point Step',
+    //         text: 'Add your arbitrary point instructions here...',
+    //         icon: 'info',
+    //         confirmButtonText: 'Okay'
+    //     });
 
-        setAnswerCorrect(true);
-        const nextStep = 5;
-        setStep(nextStep);
-        setProgress((nextStep / totalSteps) * 100);
-    };
+    //     setAnswerCorrect(true);
+    //     const nextStep = 5;
+    //     setStep(nextStep);
+    //     setProgress((nextStep / totalSteps) * 100);
+    // };
 
     const showRegionStepAlert = async () => {
         await Swal.fire({

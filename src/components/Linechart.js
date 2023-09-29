@@ -25,6 +25,7 @@ const Linechart = ({ nextStep, correctGuesses, setCorrectGuesses }) => {
   }, []);
 
   const xValues = useMemo(() => Array.from({ length: 21 }, (_, index) => index - 10), []);
+
   const yValues = useMemo(() => Array(xValues.length).fill(0), [xValues]);
 
   const [currentTargetValue, setCurrentTargetValue] = useState(targetValues[0]);
@@ -56,7 +57,7 @@ const Linechart = ({ nextStep, correctGuesses, setCorrectGuesses }) => {
             confirmButtonText: 'Okay',
           }).then((result) => {
             if (result.isConfirmed) {
-              nextStep(); 
+              nextStep();
             }
           });
         }
@@ -91,8 +92,9 @@ const Linechart = ({ nextStep, correctGuesses, setCorrectGuesses }) => {
           <h4 className='flex justify-center items-center'>Instructions</h4>
           <p>
             <ul class="list-disc">
-              <li>Enter any value from the number appearing in the graph in the input box</li>
-              <li>You can now see the poitive and negative values respectively</li>
+              <li>On the number line you can see the different numbers have been plotted. You have to guess the position of 3 given target values.</li>
+              <li>Click on the point on the number line that represents the targeted value.</li>
+              <li>Understand how there are values that lie on the left and right side of the selected point.</li>
             </ul>
           </p>
         </div>

@@ -35,6 +35,11 @@ const Quiz = () => {
         setAnswers(newAnswers);
     };
 
+    const handleRetry = () => {
+        setAnswers(Array(questions.length).fill(''));
+        setShowAnswers(false);
+    };
+
     const handleSubmit = () => {
         const score = answers.reduce((acc, answer, index) => {
             return answer === questions[index].correctAnswer ? acc + 1 : acc;
@@ -46,11 +51,10 @@ const Quiz = () => {
             icon: 'info',
             showCancelButton: true,
             cancelButtonText: 'Show Answers',
-            confirmButtonText: 'Restart Quiz',
+            confirmButtonText: 'Retry Quiz', // Change the text for the retry button
         }).then((result) => {
             if (result.isConfirmed) {
-                setAnswers(Array(questions.length).fill(''));
-                setShowAnswers(false);
+                handleRetry(); // Call the handleRetry function
             } else {
                 setShowAnswers(true);
             }
@@ -98,11 +102,16 @@ const Quiz = () => {
                 ))}
 
                 <div className="flex justify-center mt-4">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleSubmit}>
-                        Submit
-                    </button>
+                    {showAnswers ? (
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleRetry}>
+                            Retry Quiz
+                        </button>
+                    ) : (
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleSubmit}>
+                            Submit
+                        </button>
+                    )}
                 </div>
-
                 {showAnswers && (
                     <div className="flex justify-center mt-4">
                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setShowAnswers(false)}>
@@ -114,5 +123,4 @@ const Quiz = () => {
         </div>
     );
 };
-
 export default Quiz;

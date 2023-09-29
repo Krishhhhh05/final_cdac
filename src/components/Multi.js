@@ -49,7 +49,7 @@ function Multi(props) {
 
     async function checkAnswer(color) {
         if (a === '' || b === '') {
-            Swal.fire('Enter Values', 'Please enter values for slope and intercept before selecting an option.', 'warning');
+            Swal.fire('Missing Values', 'Please enter values of slope and intercept before selecting an option.', 'warning');
         }
         if (color === correctAnswer) {
             props.setAnswerCorrect(true);
@@ -90,19 +90,10 @@ function Multi(props) {
                         <h4> Instructions</h4>
                         <p>
                             <ul class="list-disc">
-                                <li> Correctly choose the target values</li>
+                                <li>You have to select the right line that represents the equation y{'='}Mx+c.</li>
+                                <li>First you have to enter the values of slope{"("}M{")"} and the intercept{"("}c{")"} respectively and select a line which represents the equation out of the four options provided.</li>
                             </ul>
                         </p>
-
-
-                        <h1 className="font-bold text-lg text-center"><br />Plotting the Equation</h1>
-                        <br />
-                        <div className="font-light">
-                            Here the equation is in the form of      <b><br />Y = mX + C</b>
-                            <br />
-                            <br />
-                            Enter the values and select which line correctly plots the equation.
-                        </div>
                         <div className="" id="input">
                             <div className="a" ID="INPUT"><br />
                                 <label htmlFor="a" className="flex justify-center">Enter the slope: </label>
@@ -156,9 +147,6 @@ function Multi(props) {
                 <div className=" main-content bg-gray-400 p-4 col-span-2 rounded-md">
                     <div className=''>
                         < div class="flex m-2 justify-start items-center ">
-
-
-
                             <div id="graph" className="float-left ml-5 px-4 my-4">
                                 <Plot
                                     data={[
