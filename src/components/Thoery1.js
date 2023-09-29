@@ -1,131 +1,49 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'react-toastify/dist/ReactToastify.css';
-import Multi from './Multi';
 import Navbar from './Navbar';
-import Region from './Region';
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router';
-import Linechart from './Linechart';
-import NumberLine from './NumberLine';
-import NumRegion from './NumRegion';
 
-function Workbench() {
-  const [step, setStep] = useState(1);
-  const [answerCorrect, setAnswerCorrect] = useState(false);
-  const navigate = useNavigate();
+function Theory() {
 
-  const handleNext = async () => {
-    if (step === 4) {
-      if (answerCorrect) {
-        await showMultiStepAlert();
-      } else {
-        alert('Please provide a correct answer before proceeding.');
-      }
-    } else if (step === 5) {
-      if (answerCorrect) {
-        await showRegionStepAlert();
-      } else {
-        alert('Please provide a correct answer before proceeding.');
-      }
-    } else {
-      setStep(step + 1);
-    }
-  };
-
-  const showMultiStepAlert = async () => {
-    await Swal.fire({
-      title: 'Arbitrary Point Step',
-      text: 'Add your arbitrary point instructions here...',
-      icon: 'info',
-      confirmButtonText: 'Okay'
-    });
-
-    setAnswerCorrect(true);
-    setStep(5);
-  };
-
-  const showRegionStepAlert = async () => {
-    await Swal.fire({
-      title: 'Region Step',
-      text: 'This is the next region alert.',
-      icon: 'info',
-      confirmButtonText: 'Okay'
-
-    });
-    if (answerCorrect) {
-      setStep(5);
-    } else {
-      alert('Please provide a correct answer before proceeding.');
-    }
-  };
-
-  const renderStep = () => {
-    switch (step) {
-      case 1:
-        return <Linechart/>;
-      case 2:
-        return <NumberLine/>;
-      case 3:
-        return <NumRegion/>;
-      case 4:
-        return <Multi setAnswerCorrect={setAnswerCorrect} />;
-      case 5:
-        return <Region setAnswerCorrect={setAnswerCorrect} handleNext={handleNext} />;
-        case 6:
-          return <Linechart/>
-      default:
-        return <Multi setAnswerCorrect={setAnswerCorrect} />;
-        
-    }
-  };
-  const nextStep = () => {
-    setStep(step + 1);
-  };
   return (
     <div className="min-h-screen p-10 justify-center">
-      <h1 className="text-4xl font-bold mb-4 justify-center text-align-bottom-center">INEQUATIONS IN TWO VARIABLES</h1>
+      <h1 className="text-4xl font-bold mb-4 flex justify-center text-align-bottom-center">Graphical representation of Ax+By+C{'>'}0
+    </h1>
         <Navbar />
-      <div className="bg-gray-200 rounded-lg flex flex-col h-2/3  ">
-        <div>
-          {/* {step === 1 && <Linechart />}
-          {step === 2 && <NumberLine />}
-          {step === 3 && <NumRegion />} */}
-          {/* {step === 4 && <Multi setAnswerCorrect={setAnswerCorrect} />}
-          {step === 5 && <Region setAnswerCorrect={setAnswerCorrect} handleNext={handleNext} />} */}
+      <div className="bg-gray-200 rounded-lg  p-4 mt-2">
+        
+                       <div className='text-xl'>
+                        <b>Objective:  </b>
+                        To plot the section represented by Ax+By+C{'>'}0 on a graph.
+                        <br></br>
+                        <br></br>
+                        </div>
+                        <div className='text-xl flex flex-row'>
+                          <div className='font-bold mr-1'>
 
-        </div>
-       
+Learning Outcome:</div>
+                      Students will be able to identify the section on the graph that represents the given inequality of the type Ax+By+C{'>'}0.
+                        <br></br>
+                        <br></br>
+                        </div>
+
+                        <div className='text-xl font-medium'>With the help of the following steps we will be learning how to plot the section represented by Ax+By+C{'>'}0 on a graph:</div>
+                        <br></br>
+                        <ol className='list-decimal'>                   <li>     Understanding the number line and how the numbers are represented on it.
+                        </li><li>  Understanding the positive and negative section with respect to a point on the number line. 
+                        </li><li>Plotting an equation of the type x-a{'>'}0 on a 2-Dimensional graph.
+                        </li><li>  Understanding the correct representation of a linear equation of the type y=mx+c on the graph.
+                        </li><li>  Understanding the positive and the negative sections of the graph with respect to a line and thus being able to understand how to plot Ax+By+C{'>'}0 on a graph. 
+                        </li></ol>
+
+                    </div>
         
-        
-        {renderStep()}
-        {(step === 1 ||step === 2 ||step === 3 )  && 
-        <div className="flex items-center justify-center h-full">
-        <button
-          type="button"
-          className="btn btn-primary m-2 flex items-center justify-center"
-          onClick={nextStep}
-        >
-          Next
-        </button>
-      </div>
       
-        }
-        {(step === 4 || step === 5) &&
-        <div className="flex items-center justify-center h-full">
-        <button
-          type="button"
-          className="btn btn-primary m-2 flex items-center justify-center"
-          onClick={handleNext}
-        >
-          Next
-        </button>
-      </div>
        
 
-        }
-      </div>
+        
+    
       </div>
       );
 }
 
-      export default Workbench;
+      export default Theory;

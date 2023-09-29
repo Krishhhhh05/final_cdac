@@ -20,7 +20,7 @@ const Simulator = () => {
                     </div>
                 )}
             </div>
-            <div class="col-12 col-md-9 border border-light border-2 overflow-auto">
+            <div class="col-12 col-md-9 border-light border-2 overflow-auto">
                 <div class="title text-center d-flex justify-content-center align-items-center fw-bolder mt-3 " >All the rectangles of the same perimeter, the square has the maximum area
                 </div>
                 <div class="title1 d-flex justify-content-center align-items-end fw-bolder mt-2">Objective:
@@ -42,4 +42,4 @@ const Simulator = () => {
     )
 }
 
-export default Simulator
+export default Simulator;

@@ -221,4 +221,4 @@ function Multi(props) {
         </>
     );
 }
-export default Multi
+export default Multi;
