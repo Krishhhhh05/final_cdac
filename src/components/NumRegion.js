@@ -178,8 +178,9 @@ const NumRegion = () => {
                   <div id="input" className=" ">
                     <h1 className="font-bold text-lg text-center">Plotting Equations</h1>
                     <label>a:<input className="bg-white rounded-full mx-2 my-6 px-3" type="number" value={a} placeholder="Enter a to plot X - a > 0 " onChange={(event) => setA(parseFloat(event.target.value))} /> </label>
-                    <p><button className="btn btn-lg btn-primary mx-8 my-8" onClick={handlePlot}> Plot</button>
-                    </p>
+
+                    <button className="btn btn-lg btn-primary mx-8 my-8" onClick={handlePlot}> Plot</button>
+                    
                   </div>
                 </p>
               </div>
