@@ -148,7 +148,7 @@ function Simulator() {
                     style={{ width: `${progress}%` }}
                 />
                 <div className="absolute inset-0 flex items-center justify-center text-white font-bold">
-                    Step: {step} / 5
+                    Step: {step} / 6
                 </div>
             </div>
 

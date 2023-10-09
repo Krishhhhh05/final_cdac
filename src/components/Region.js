@@ -7,7 +7,7 @@ const Region = (props) => {
     const [b, setB] = useState('');
     const [c, setC] = useState('');
     const [plotData, setPlotData] = useState(null);
-    const [ setAnswerCorrect5] = useState(true);
+    const [answerCorrect5, setAnswerCorrect5] = useState(true);
     const [points, setPoints] = useState(0);
 
 
