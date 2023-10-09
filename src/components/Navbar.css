@@ -1,0 +1,8 @@
+.nav-link {
+    text-decoration: none; /* Remove underline from links */
+    color: white; /* Set the default text color */
+}
+
+.nav-link.active {
+    font-weight: bold; /* Style for active link, you can customize this further */
+}
