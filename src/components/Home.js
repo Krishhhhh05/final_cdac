@@ -7,7 +7,7 @@ const Home = () => {
       <h1 className="text-4xl font-bold mb-4 justify-center text-align-bottom-center">INEQUATIONS IN TWO VARIABLES</h1>
       <Navbar />
       <h3 className="text-4xl font-bold mb-4 justify-center text-align-bottom-center">
-        Welcome!!
+        Welcome!
       </h3>
     </div>
   );
