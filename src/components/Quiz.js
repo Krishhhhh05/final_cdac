@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import Navbar from './Navbar';
-
 const questions = [
     {
         question: "Consider the following system of inequalities: A. y > x + 1  B. y < 10 C. x > 1  Which of the following is NOT in the feasible region of this system?",

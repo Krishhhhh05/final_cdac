@@ -7,7 +7,7 @@ const Region = (props) => {
     const [b, setB] = useState('');
     const [c, setC] = useState('');
     const [plotData, setPlotData] = useState(null);
-    const [setAnswerCorrect5] = useState(true);
+    const [ setAnswerCorrect5] = useState(true);
     const [points, setPoints] = useState(0);
 
 
@@ -130,23 +130,23 @@ const Region = (props) => {
         },
         showlegend: false,
     };
-
+    
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
                 <div className="bg-gray-300 p-2 rounded-md">
                     <div className='p-2'>
                         <h4> Instructions</h4>
-
-                        <ul class="list-disc">
-                            <li>Now we see a graph that represents the Inequation Ax+By+C{'>'}0.</li>
-                            <li>Enter the values of A, B and C respectively</li>
-                            <li>After entering the values, Click in the Plot button </li>
-                            <li>You will notice regions in different colors. </li>
-                            <li>Now select a point arbitrarily to check the region.</li>
-                            <li>Choose the correct region representing the Inequation Ax+By+C{'>'}0 by selecting the button.</li>
-                        </ul>
-
+                        
+                            <ul class="list-disc">
+                                <li>Now we see a graph that represents the Inequation Ax+By+C{'>'}0.</li>
+                                <li>Enter the values of A, B and C respectively</li>
+                                <li>After entering the values, Click in the Plot button </li>
+                                <li>You will notice regions in different colors. </li>
+                                <li>Now select a point arbitrarily to check the region.</li>
+                                <li>Choose the correct region representing the Inequation Ax+By+C{'>'}0 by selecting the button.</li>
+                            </ul>
+                    
                         <div className="">
 
                             <div id="input" className="">
@@ -192,7 +192,7 @@ const Region = (props) => {
                     </div>
                 </div>
                 <div className="bg-gray-400 p-4 col-span-2 rounded-md">
-                    <h4 className='flex justify-center items-center'>Visualizing Inequality with two variables </h4>
+                <h4 className='flex justify-center items-center'>Visualizing Inequality with two variables </h4>
 
                     <Plot className="float-left ml-5 px-4 my-4"
                         data={plotData}

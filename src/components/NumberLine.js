@@ -46,6 +46,7 @@ const NumberLine = ({ onInputProvided }) => {
       mode: 'markers',
       marker: { size: 10, color: 'red' },
       name: '&lt; X',
+      name: '&lt; X',
     },
     {
       x: rightIndices,
