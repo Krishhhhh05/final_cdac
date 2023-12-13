@@ -112,10 +112,16 @@ const NumRegion = () => {
               </ul>
             </p>
             <div id="input" className=" ">
-              <h1 className="font-bold text-lg text-center">Plotting Equations</h1>
-              <label>a:<input className="bg-white rounded-full mx-2 my-6 px-3" type="number" value={a} onChange={(event) => setA(parseFloat(event.target.value))} /> </label>
-              <p><button className="btn btn-lg btn-primary mx-8 my-8" onClick={handlePlot}> Plot</button>
-              </p>
+              <h1 className="font-bold text-lg text-center ">Plotting Equations</h1>
+              <div className='flex justify-center items-center'>
+
+                <label>
+                  a:<input className=" bg-white rounded-full mx-2 my-6 px-3" type="number" value={a} onChange={(event) => setA(parseFloat(event.target.value))} />
+                </label> 
+              </div>
+              <div className='flex justify-center items-center'>
+                <button className=" btn btn-lg btn-primary " onClick={handlePlot}> Plot</button>
+                </div>
             </div>
           </div>
         </div>
