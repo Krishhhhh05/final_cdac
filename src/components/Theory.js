@@ -1,6 +1,8 @@
 import React from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function Theory() {
 

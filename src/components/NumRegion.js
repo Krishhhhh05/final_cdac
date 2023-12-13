@@ -2,16 +2,33 @@ import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { Carousel } from 'react-responsive-carousel';
+// import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import Swal from 'sweetalert2';
 
 const NumRegion = () => {
   const [a, setA] = useState('');
   const [plotData, setPlotData] = useState(null);
 
+
+
   const handlePlot = () => {
+
     if (a === '' || isNaN(a)) {
-      return;
+      Swal.fire({
+        title: 'Invalid Input',
+        text: 'Please enter the value of a',
+        icon: 'error',
+      });
+    }
+
+    if (a >= -10 && a <= 10) {
+    } else {
+      Swal.fire({
+        title: 'Invalid Input',
+        text: 'Please enter an integer between -10 and 10',
+        icon: 'error',
+      });
     }
 
     const x = [-10, 10];
@@ -34,7 +51,7 @@ const NumRegion = () => {
       fill: 'toself',
       fillcolor: fillcolorAboveX,
       mode: 'none',
-      name: 'Positive Region (x - a > 0)',
+      name: 'Greater Than Region (x - a > 0)',
     };
 
     const negativeRegionX = {
@@ -43,7 +60,7 @@ const NumRegion = () => {
       fill: 'toself',
       fillcolor: fillcolorBelowX,
       mode: 'none',
-      name: 'Negative Region (x - a < 0)',
+      name: 'Less Than Region (x - a < 0)',
     };
 
     plotData.push(positiveRegionX, negativeRegionX);
@@ -67,34 +84,60 @@ const NumRegion = () => {
     showlegend: true,
   };
 
-  const [showCarousel, setShowCarousel] = useState(false);
-  const [showContent, setShowContent] = useState(false);
+  // const [showCarousel, setShowCarousel] = useState(false);
+  // const [showContent, setShowContent] = useState(true);
 
-  const handleCloseCarousel = () => {
-    if (showCarousel) {
-      setShowCarousel(false);
-      setShowContent(true);
-    } else {
-      setShowCarousel(true);
-      setShowContent(false);
-    }
-  };
+  // const handleCloseCarousel = () => {
+  //   if (showCarousel) {
+  //     setShowCarousel(false);
+  //     setShowContent(true);
+  //   } else {
+  //     setShowCarousel(true);
+  //     setShowContent(false);
+  //   }
+  // };
 
   return (
     <>
-      <div className='App'>
+      <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
+        <div className="bg-gray-300 p-4 rounded-md">
+          <div className='p-4'>
+            <div className='font-bold text-2xl flex justify-center items-center'>Instructions</div>
+            <p>
+              <ul class="list-disc">
+                <li>Enter any value 'a ' in the input box. </li>
+                <li>We plot a line using the equation x - a = 0 </li>
+                <li>You will notice that the region highlighted RED represents the x - a &lt; 0 region.</li>
+                <li>You will notice that the region highlighted GREEN represents the x - a &gt; 0 region.</li>
+              </ul>
+            </p>
+            <div id="input" className=" ">
+              <h1 className="font-bold text-lg text-center">Plotting Equations</h1>
+              <label>a:<input className="bg-white rounded-full mx-2 my-6 px-3" type="number" value={a} onChange={(event) => setA(parseFloat(event.target.value))} /> </label>
+              <p><button className="btn btn-lg btn-primary mx-8 my-8" onClick={handlePlot}> Plot</button>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className=" main-content bg-gray-400 p-4 col-span-2 rounded-md">
+          <h4 className='flex justify-center items-center'> Plotting of Line with One Variable</h4>
+          <Plot
+            data={plotData}
+            layout={layout}
+            config={{ displayModeBar: false }}
+            style={{ width: '700px', height: '500px' }}
+          />
+        </div>
+      </div>
+    </>
+  );
+};
 
-        <div className=' p-3 content-center ' >
+export default NumRegion;
 
-          {showCarousel && (
-         <div className=''>
-         <div className='m-3'>
-         <button onClick={handleCloseCarousel} type="button" className="btn btn-primary m-2">
-       {showCarousel ? 'Hide' : 'Hint'}
-     </button>
-     </div>
 
-              <Carousel
+
+{/* <Carousel
                 showThumbs={false}
                 showStatus={false}
                 showIndicators={false}
@@ -152,52 +195,4 @@ const NumRegion = () => {
                   >
                     A non-vertical line divide the plane into the upper left half-plane and lower half-plane.           </p>
                 </div>
-              </Carousel>
-            </div>
-          )}
-        </div>
-        {showContent && (
-          <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
-            <div className="bg-gray-300 p-4 rounded-md">
-              <div className='p-2'>
-                <div className="flex flex-row justify-between items-center">
-                  <div className='font-bold text-2xl ml-2'>Instructions</div>
-                  <div>
-                    <button onClick={handleCloseCarousel} type="button" className="btn btn-primary m-2">
-                      {showCarousel ? 'Hide' : 'Hint'}
-                    </button>
-                  </div>
-                </div>
-                <p>
-                  <ul class="list-disc">
-                    <li> Previously we visualized the values in 1 dimension <p>( X- Axis)</p></li>
-                    <li> Now we will visualize the same in 2 dimensions <p>( X & Y Axis) </p></li>
-                    <li> We will use the equation X- a = 0 </li>
-                    <li> Enter 'a' as the input </li>
-                  </ul>
-                  <div id="input" className=" ">
-                    <h1 className="font-bold text-lg text-center">Plotting Equations</h1>
-                    <label>a:<input className="bg-white rounded-full mx-2 my-6 px-3" type="number" value={a} placeholder="Enter a to plot X - a > 0 " onChange={(event) => setA(parseFloat(event.target.value))} /> </label>
-                    <p><button className="btn btn-lg btn-primary mx-8 my-8" onClick={handlePlot}> Plot</button>
-                    </p>
-                  </div>
-                </p>
-              </div>
-            </div>
-
-            <div className=" main-content bg-gray-400 p-4 col-span-2 rounded-md">
-              <Plot
-                data={plotData}
-                layout={layout}
-                config={{ displayModeBar: false }}
-                style={{ width: '700px', height: '500px' }}
-              />
-            </div>
-          </div>
-        )}
-      </div>
-    </>
-  );
-};
-
-export default NumRegion;
+              </Carousel> */}

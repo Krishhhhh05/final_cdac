@@ -6,14 +6,16 @@ import Region from './Region';
 import Swal from 'sweetalert2';
 import Linechart from './Linechart';
 import NumberLine from './NumberLine';
-import { useNavigate } from 'react-router-dom';
+import NumRegion from './NumRegion';
+// import { useNavigate } from 'react-router-dom';
 
 function Simulator() {
     const [step, setStep] = useState(0);
     const [answerCorrect, setAnswerCorrect] = useState(false);
-    const totalSteps = 5;
+    // const [answerCorrect4, setAnswerCorrect4] = useState(false);
+    const totalSteps = 6;
     const [progress, setProgress] = useState(0);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [correctGuesses, setCorrectGuesses] = useState(0);
     const [inputProvided, setInputProvided] = useState(false);
 
@@ -23,21 +25,19 @@ function Simulator() {
     }, [step]);
 
     const handleNext = async () => {
-        if (step === 3) {
+        if (step === 4) {
             if (answerCorrect) {
                 // await showMultiStepAlert();
                 setStep(step + 1);
             } else {
                 Swal.fire('Warning!', `Please provide a correct answer before proceeding.`, 'warning');
             }
-        } else if (step === 4) {
+        } else if (step === 5) {
             if (answerCorrect) {
                 await showRegionStepAlert();
             } else {
                 Swal.fire('Warning!', `Please provide a correct answer before proceeding.`, 'warning');
             }
-        } else if (step === 5) {
-            navigate('/theory');
         } else {
             if (step === 0) {
                 setStep(step + 1);
@@ -52,11 +52,20 @@ function Simulator() {
                     Swal.fire('Warning!', 'Please provide an input value before proceeding.', 'warning');
                 }
             }
+            else if (step === 3) {
+                if (inputProvided) {
+                    setStep(step + 1);
+                } else {
+                    Swal.fire('Warning!', 'Please provide an input value before proceeding.', 'warning');
+                }
+            }
             else {
                 setStep(step + 1);
             }
         }
     };
+
+
 
     // const showMultiStepAlert = async () => {
     //     await Swal.fire({
@@ -123,17 +132,14 @@ function Simulator() {
                 return <Linechart nextStep={handleNext} correctGuesses={correctGuesses} setCorrectGuesses={setCorrectGuesses} />;
             case 2:
                 return <NumberLine onInputProvided={() => setInputProvided(true)} />
-            // case 3:
-            //     return <NumRegion />;
             case 3:
-                return <Multi setAnswerCorrect={setAnswerCorrect} />;
+                return <NumRegion />;
             case 4:
-                return <Region onClick={handleNext} disabled={!answerCorrect} />;
-            // case 6:
-            //     return <Linechart />;
+                return <Multi setAnswerCorrect={setAnswerCorrect} />;
+            case 5:
+                return <Region />;
             default:
-                // return <Multi setAnswerCorrect={setAnswerCorrect} />;
-                return <Region setAnswerCorrect={setAnswerCorrect} handleNext={handleNext} />;
+            // return <Multi setAnswerCorrect={setAnswerCorrect} />;
         }
     };
 
@@ -147,26 +153,26 @@ function Simulator() {
                     style={{ width: `${progress}%` }}
                 />
                 <div className="absolute inset-0 flex items-center justify-center text-white font-bold">
-                    Step: {step} / 5
+                    Step: {step} / 6
                 </div>
             </div>
 
             <div className="bg-gray-200 rounded-lg flex flex-col h-2/3">
                 {renderStep()}
 
-                {step === 4 &&
+                {step === 5 &&
                     <div className="flex items-center justify-center h-full">
                         <button
                             type="button"
                             className="btn btn-primary m-2 flex items-center justify-center"
                             onClick={handleNext}
-                            disabled={!answerCorrect}
+                            enabled={!answerCorrect}
                         >
                             Finish
                         </button>
                     </div>}
 
-                {(step === 0 || step === 1 || step === 2 || step === 3) &&
+                {(step === 0 || step === 1 || step === 2 || step === 3 || step === 4) &&
                     <div className="flex items-center justify-center h-full">
                         <button
                             type="button"
@@ -183,3 +189,4 @@ function Simulator() {
 }
 
 export default Simulator;
+
