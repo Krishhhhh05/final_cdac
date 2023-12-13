@@ -134,23 +134,26 @@ const Region = (props) => {
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
-                <div className="bg-gray-300 p-4 rounded-md">
-                    <div className='p-4'>
+                <div className="bg-gray-300 p-2 rounded-md">
+                    <div className='p-2'>
                         <h4> Instructions</h4>
-                        <p>
+                        
                             <ul class="list-disc">
-                                <li>You have to select the section of the graph that represents the inequation Ax+By+C{'>'}0.</li>
-                                <li>First you have to enter the values of A, B and C respectively and select a point arbitrarily to check the section.</li>
-                                <li>Substitute the values of the X and Y co-ordinates in the equation and If the derived value of the expression is less than zero then the point lies in the negative region or else in the positive region.</li>
+                                <li>Now we see a graph that represents the Inequation Ax+By+C{'>'}0.</li>
+                                <li>Enter the values of A, B and C respectively</li>
+                                <li>After entering the values, Click in the Plot button </li>
+                                <li>You will notice regions in different colors. </li>
+                                <li>Now select a point arbitrarily to check the region.</li>
+                                <li>Choose the correct region representing the Inequation Ax+By+C{'>'}0 by selecting the button.</li>
                             </ul>
-                        </p>
+                    
                         <div className="">
 
                             <div id="input" className="">
-                                <h1 className="font-bold text-lg text-center"><br />Input</h1>
+                                <h1 className="font-bold text-lg text-center">Input</h1>
                                 <div className='flex justify-center items-center'>
                                     a:
-                                    <input className='bg-white rounded-full mx-2 my-6 px-3'
+                                    <input className='bg-white rounded-full mx-2 my-2 px-3'
                                         type="number"
                                         value={a}
                                         placeholder='Enter A'
@@ -159,7 +162,7 @@ const Region = (props) => {
                                 </div>
                                 <div className='flex justify-center items-center'>
                                     b:
-                                    <input className='bg-white rounded-full mx-2 my-6 px-3'
+                                    <input className='bg-white rounded-full mx-2 my-2 px-3'
                                         type="number"
                                         value={b}
                                         placeholder='Enter B'
@@ -168,7 +171,7 @@ const Region = (props) => {
                                 </div>
                                 <div className='flex justify-center items-center'>
                                     c:
-                                    <input className='bg-white rounded-full mx-2 my-6 px-3'
+                                    <input className='bg-white rounded-full mx-2 my-2 px-3'
                                         type="number"
                                         value={c}
                                         placeholder='Enter C'
@@ -179,8 +182,8 @@ const Region = (props) => {
                                 <div className='flex justify-center items-center'>
                                     <button className=" btn btn-lg btn-primary " onClick={handlePlot}>Plot</button>
                                 </div>
-                                <div className='flex justify-between mt-4' >
-                                    <button type="button" className="btn btn-danger" onClick={checkred}>Red</button>
+                                <div className='flex justify-center mt-4' >
+                                    <button type="button" className="btn btn-danger mx-4" onClick={checkred}>Red</button>
                                     <button type="button" className="btn btn-success" onClick={checkgreen}>Green</button>
                                 </div>
                                 <br />
@@ -189,6 +192,8 @@ const Region = (props) => {
                     </div>
                 </div>
                 <div className="bg-gray-400 p-4 col-span-2 rounded-md">
+                <h4 className='flex justify-center items-center'>Visualizing Inequality with two variables </h4>
+
                     <Plot className="float-left ml-5 px-4 my-4"
                         data={plotData}
                         layout={layout}

@@ -87,12 +87,15 @@ function Multi(props) {
                 <div className="bg-gray-300 p-4 rounded-md">
                     {/* Content for the left grid */}
                     <div className='p-4'>
-                        <h4> Instructions</h4>
+                        <h4 className='flex  justify-center items-center'> Instructions</h4>
                         <p>
                             <ul class="list-disc">
-                                <li>You have to select the right line that represents the equation y{'='}Mx+c.</li>
-                                <li>First you have to enter the values of slope{"("}M{")"} and the intercept{"("}c{")"} respectively and select a line which represents the equation out of the four options provided.</li>
-                            </ul>
+                                <li>Now we plot a line using the equation Y{'='}mX+c.</li>                
+                                <li>First you have to enter the values of slope{"("}m{")"} and the intercept{"("}c{")"}.</li>
+                                <li>After entering the values, you will notice 4 lines in different colors. </li>
+                                <li>Choose the correct line by selecting the button below.</li>
+
+</ul>
                         </p>
                         <div className="" id="input">
                             <div className="a" ID="INPUT"><br />
@@ -146,7 +149,10 @@ function Multi(props) {
                 </div>
                 <div className=" main-content bg-gray-400 p-4 col-span-2 rounded-md">
                     <div className=''>
+                    <h4 className='flex justify-center items-center'>Plotting of a Line with Two Variables </h4>
+
                         < div class="flex m-2 justify-start items-center ">
+
                             <div id="graph" className="float-left ml-5 px-4 my-4">
                                 <Plot
                                     data={[
