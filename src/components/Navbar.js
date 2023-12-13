@@ -1,47 +1,43 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import './Navbar.css'; // Import your CSS file for styling
 
 function Navbar() {
-
     return (
-
         <div>
-            <ul class="nav nav-tabs p-4  text-white flex justify-between">
-                <Link to="/theory" title="Theory">
-                    <li class="nav-item">
-                        <div class="nav-link active" aria-current="page" >Theory</div>
-                    </li>
-                </Link>
-                <Link to="/animation" title="Lecture">
-                    <li class="nav-item">
-                        <div class="nav-link active" aria-current="page" href=''>Animation</div>
-                    </li>
-                </Link>
-                <Link to="/simulator" title="Simulator">
-                    <li class="nav-item">
-                        <div class="nav-link active" aria-current="page">Simulator</div>
-                    </li>
-                </Link>
-                <Link to="/quiz" title="Quiz">
-                    <li class="nav-item">
-                        <div class="nav-link active" aria-current="page" >Self Evaluation</div>
-                    </li>
-                </Link>
-                <Link to="/ref" title="References">
-                    <li class="nav-item">
-                        <div class="nav-link active" aria-current="page" href="#">References</div>
-                    </li>
-                </Link>
-                <Link to="/feedback" title="Feedback">
-                    <li class="nav-item">
-                        <div class="nav-link active" aria-current="page" href="#">Feedback</div>
-                    </li>
-                </Link>
+            <ul className="nav nav-tabs p-4 text-white flex justify-between">
+                <li className="nav-item">
+                    <NavLink to="/theory" className="nav-link" activeClassName="active" exact>
+                        Theory
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink to="/animation" className="nav-link" activeClassName="active">
+                        Animation
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink to="/simulator" className="nav-link" activeClassName="active">
+                        Simulator
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink to="/quiz" className="nav-link" activeClassName="active">
+                        Self Evaluation
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink to="/ref" className="nav-link" activeClassName="active">
+                        References
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink to="/feedback" className="nav-link" activeClassName="active">
+                        Feedback
+                    </NavLink>
+                </li>
             </ul>
-
         </div>
-
-
     );
 }
 

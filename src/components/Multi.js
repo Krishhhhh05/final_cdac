@@ -49,11 +49,11 @@ function Multi(props) {
 
     async function checkAnswer(color) {
         if (a === '' || b === '') {
-            Swal.fire('Enter Values', 'Please enter values for slope and intercept before selecting an option.', 'warning');
+            Swal.fire('Missing Values', 'Please enter values of slope and intercept before selecting an option.', 'warning');
         }
         if (color === correctAnswer) {
             props.setAnswerCorrect(true);
-            Swal.fire('Correct Answer!', `Your answer is correct!`, 'success');
+            Swal.fire('Correct Answer!', 'Your answer is correct!', 'success');
             setA('');
             setB('');
 
@@ -87,22 +87,16 @@ function Multi(props) {
                 <div className="bg-gray-300 p-4 rounded-md">
                     {/* Content for the left grid */}
                     <div className='p-4'>
-                        <h4> Instructions</h4>
+                        <h4 className='flex  justify-center items-center'> Instructions</h4>
                         <p>
                             <ul class="list-disc">
-                                <li> Correctly choose the target values</li>
+                                <li>Now we plot a line using the equation Y{'='}mX+c.</li>
+                                <li>First you have to enter the values of slope{"("}m{")"} and the intercept{"("}c{")"}.</li>
+                                <li>After entering the values, you will notice 4 lines in different colors. </li>
+                                <li>Choose the correct line by selecting the button below.</li>
+
                             </ul>
                         </p>
-
-
-                        <h1 className="font-bold text-lg text-center"><br />Plotting the Equation</h1>
-                        <br />
-                        <div className="font-light">
-                            Here the equation is in the form of      <b><br />Y = mX + C</b>
-                            <br />
-                            <br />
-                            Enter the values and select which line correctly plots the equation.
-                        </div>
                         <div className="" id="input">
                             <div className="a" ID="INPUT"><br />
                                 <label htmlFor="a" className="flex justify-center">Enter the slope: </label>
@@ -155,9 +149,9 @@ function Multi(props) {
                 </div>
                 <div className=" main-content bg-gray-400 p-4 col-span-2 rounded-md">
                     <div className=''>
+                        <h4 className='flex justify-center items-center'>Plotting of a Line with Two Variables </h4>
+
                         < div class="flex m-2 justify-start items-center ">
-
-
 
                             <div id="graph" className="float-left ml-5 px-4 my-4">
                                 <Plot

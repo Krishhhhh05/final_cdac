@@ -7,17 +7,18 @@ import Swal from 'sweetalert2';
 import Linechart from './Linechart';
 import NumberLine from './NumberLine';
 import NumRegion from './NumRegion';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
-function Workbench() {
+function Simulator() {
     const [step, setStep] = useState(0);
     const [answerCorrect, setAnswerCorrect] = useState(false);
+    // const [answerCorrect4, setAnswerCorrect4] = useState(false);
     const totalSteps = 6;
     const [progress, setProgress] = useState(0);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [correctGuesses, setCorrectGuesses] = useState(0);
     const [inputProvided, setInputProvided] = useState(false);
-    
+
 
     useEffect(() => {
         setProgress((step / totalSteps) * 100);
@@ -26,7 +27,8 @@ function Workbench() {
     const handleNext = async () => {
         if (step === 4) {
             if (answerCorrect) {
-                await showMultiStepAlert();
+                // await showMultiStepAlert();
+                setStep(step + 1);
             } else {
                 Swal.fire('Warning!', `Please provide a correct answer before proceeding.`, 'warning');
             }
@@ -36,16 +38,21 @@ function Workbench() {
             } else {
                 Swal.fire('Warning!', `Please provide a correct answer before proceeding.`, 'warning');
             }
-        } else if (step === 6) {
-            navigate('/theory');
         } else {
             if (step === 0) {
                 setStep(step + 1);
             } else if (step === 1 && correctGuesses < 3) {
-                Swal.fire('Warning!', 'Please complete all steps before proceeding.', 'warning');
+                Swal.fire('Warning!', 'Please guess three values before proceeding.', 'warning');
             } else if (step === 1 && correctGuesses >= 3) {
                 setStep(step + 1);
             } else if (step === 2) {
+                if (inputProvided) {
+                    setStep(step + 1);
+                } else {
+                    Swal.fire('Warning!', 'Please provide an input value before proceeding.', 'warning');
+                }
+            }
+            else if (step === 3) {
                 if (inputProvided) {
                     setStep(step + 1);
                 } else {
@@ -58,19 +65,21 @@ function Workbench() {
         }
     };
 
-    const showMultiStepAlert = async () => {
-        await Swal.fire({
-            title: 'Arbitrary Point Step',
-            text: 'Add your arbitrary point instructions here...',
-            icon: 'info',
-            confirmButtonText: 'Okay'
-        });
 
-        setAnswerCorrect(true);
-        const nextStep = 5;
-        setStep(nextStep);
-        setProgress((nextStep / totalSteps) * 100);
-    };
+
+    // const showMultiStepAlert = async () => {
+    //     await Swal.fire({
+    //         title: 'Arbitrary Point Step',
+    //         text: 'Add your arbitrary point instructions here...',
+    //         icon: 'info',
+    //         confirmButtonText: 'Okay'
+    //     });
+
+    //     setAnswerCorrect(true);
+    //     const nextStep = 5;
+    //     setStep(nextStep);
+    //     setProgress((nextStep / totalSteps) * 100);
+    // };
 
     const showRegionStepAlert = async () => {
         await Swal.fire({
@@ -128,12 +137,9 @@ function Workbench() {
             case 4:
                 return <Multi setAnswerCorrect={setAnswerCorrect} />;
             case 5:
-                return <Region onClick={handleNext} disabled={!answerCorrect} />;
-            // case 6:
-            //     return <Linechart />;
+                return <Region />;
             default:
-                // return <Multi setAnswerCorrect={setAnswerCorrect} />;
-                return <Region setAnswerCorrect={setAnswerCorrect} handleNext={handleNext} />;
+            // return <Multi setAnswerCorrect={setAnswerCorrect} />;
         }
     };
 
@@ -147,7 +153,7 @@ function Workbench() {
                     style={{ width: `${progress}%` }}
                 />
                 <div className="absolute inset-0 flex items-center justify-center text-white font-bold">
-                    Step: {step} / 5
+                    Step: {step} / 6
                 </div>
             </div>
 
@@ -160,7 +166,7 @@ function Workbench() {
                             type="button"
                             className="btn btn-primary m-2 flex items-center justify-center"
                             onClick={handleNext}
-                            disabled={!answerCorrect} 
+                            enabled={!answerCorrect}
                         >
                             Finish
                         </button>
@@ -182,4 +188,5 @@ function Workbench() {
     );
 }
 
-export default Workbench;
+export default Simulator;
+

@@ -18,7 +18,7 @@ const NumberLine = ({ onInputProvided }) => {
 
       if (numericValue >= -10 && numericValue <= 10) {
         setHighlightedValue(numericValue);
-        onInputProvided(); 
+        onInputProvided();
       } else {
         Swal.fire({
           title: 'Invalid Input',
@@ -45,21 +45,21 @@ const NumberLine = ({ onInputProvided }) => {
       y: leftIndices.map(() => 0),
       mode: 'markers',
       marker: { size: 10, color: 'red' },
-      name: 'Negative Values',
+      name: '&lt; X',
     },
     {
       x: rightIndices,
       y: rightIndices.map(() => 0),
       mode: 'markers',
       marker: { size: 10, color: 'green' },
-      name: 'Positive Values',
+      name: '&gt; X',
     },
     {
       x: [highlightedValue],
       y: [0],
       mode: 'markers',
       marker: { size: 20, color: 'blue' },
-      name: 'Highlighted Value',
+      name: 'X',
     },
   ];
 
@@ -99,17 +99,18 @@ const NumberLine = ({ onInputProvided }) => {
         <div className='p-4'>
           <h4 className='flex justify-center items-center'>Instructions</h4>
           <p>
-            <ul className="list-disc">
-              <li>Enter any value from the number appearing in the graph in the input box</li>
-              <li>You can now see the positive and negative values respectively</li>
+            <ul class="list-disc">
+              <li>Enter any integer value from the range of -10 to 10 in the input box.</li>
+              <li>You will notice that the value of all the points to the left of the highlighted point are RED and are LESSER than the chosen value.</li>
+              <li>At the same time you will notice that the value of all the points to the right of the highlighted point are GREEN and are GREATER than the chosen value.</li>
             </ul>
           </p>
         </div>
       </div>
       <div className="bg-gray-400 p-4 col-span-2 rounded-md">
-        <h4 className='flex justify-center items-center'> Visualizing Positive and Negative values on a numberline</h4>
+        <h4 className='flex justify-center items-center'> Visualizing Inequality on a Number Line with One Axis</h4>
         <div className='flex justify-center items-center'>
-          <label>Highlight a Value: </label>
+          <label>Enter a Value (X): </label>
           <input
             type="number"
             min="-10"
