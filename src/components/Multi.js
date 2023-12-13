@@ -50,6 +50,7 @@ function Multi(props) {
     async function checkAnswer(color) {
         if (a === '' || b === '') {
             Swal.fire('Missing Values', 'Please enter values of slope and intercept before selecting an option.', 'warning');
+            return;
         }
         if (color === correctAnswer) {
             props.setAnswerCorrect(true);

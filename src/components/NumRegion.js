@@ -67,7 +67,7 @@ const NumRegion = () => {
     showlegend: true,
   };
 
-  const [showCarousel, setShowCarousel] = useState(true);
+  const [showCarousel, setShowCarousel] = useState(false);
   const [showContent, setShowContent] = useState(false);
 
   const handleCloseCarousel = () => {

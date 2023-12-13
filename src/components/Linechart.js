@@ -6,7 +6,6 @@ import Swal from 'sweetalert2';
 const Plot = createPlotlyComponent(Plotly);
 
 const Linechart = ({ nextStep, correctGuesses, setCorrectGuesses }) => {
-
   const generateRandomUniqueValue = (min, max, exclude) => {
     let randomValue;
     do {
@@ -47,20 +46,23 @@ const Linechart = ({ nextStep, correctGuesses, setCorrectGuesses }) => {
           setCurrentTargetValue(targetValues[nextTargetIndex]);
         }
 
-        setCorrectGuesses(prevCorrectGuesses => prevCorrectGuesses + 1);
-        if (correctGuesses >= 3) {
-          Swal.fire({
-            title: 'You can now move ahead!',
-            icon: 'success',
-            showCancelButton: false,
-            showConfirmButton: true,
-            confirmButtonText: 'Okay',
-          }).then((result) => {
-            if (result.isConfirmed) {
-              nextStep();
-            }
-          });
-        }
+        setCorrectGuesses((prevCorrectGuesses) => prevCorrectGuesses + 1);
+
+        setCorrectGuesses((updatedCorrectGuesses) => {
+          if (updatedCorrectGuesses >= 3) {
+            Swal.fire({
+              title: 'You can now move ahead!',
+              icon: 'success',
+              showCancelButton: false,
+              showConfirmButton: true,
+              confirmButtonText: 'Okay',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                nextStep();
+              }
+            });
+          }
+        });
       });
     } else {
       const message = clickedValue < currentTargetValue
@@ -91,7 +93,7 @@ const Linechart = ({ nextStep, correctGuesses, setCorrectGuesses }) => {
         <div className='p-4'>
           <h4 className='flex justify-center items-center'>Instructions</h4>
           <p>
-            <ul class="list-disc">
+            <ul className="list-disc">
               <li>On the number line you can see the different numbers have been plotted. You have to guess the position of 3 given target values.</li>
               <li>Click on the point on the number line that represents the targeted value.</li>
               <li>Understand how there are values that lie on the left and right side of the selected point.</li>
@@ -100,14 +102,12 @@ const Linechart = ({ nextStep, correctGuesses, setCorrectGuesses }) => {
         </div>
       </div>
       <div className="bg-gray-400 p-4 col-span-2 rounded-md">
-
         <h2>Click on the Number Line</h2>
         {currentTargetValue &&
           <div className='flex items-center'>
             Target Value:
-            <div className='bg-sky-500/75 shrink m-2 rounded-full p-3 text-white'>    {currentTargetValue}</div>
-
-          </div >}
+            <div className='bg-sky-500/75 shrink m-2 rounded-full p-3 text-white'>{currentTargetValue}</div>
+          </div>}
         <div>
           <p>Click on the number line to select a value:</p>
           <div className='flex justify-center items-center'>
