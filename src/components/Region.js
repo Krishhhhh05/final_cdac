@@ -7,7 +7,7 @@ const Region = (props) => {
     const [b, setB] = useState('');
     const [c, setC] = useState('');
     const [plotData, setPlotData] = useState(null);
-    const [setAnswerCorrect5] = useState(true);
+    // const [setAnswerCorrect5] = useState(true);
     const [points, setPoints] = useState(0);
 
 
@@ -74,14 +74,14 @@ const Region = (props) => {
             return;
         }
         if (a > 0 && b > 0 && c > 0) {
-            setAnswerCorrect5(true);
+            // setAnswerCorrect5(true);
             setPoints(points + 1);
             await Swal.fire('Correct Answer!', 'Your answer is correct!', 'success');
             setA('');
             setB('');
             setC('');
         } else {
-            setAnswerCorrect5(false);
+            // setAnswerCorrect5(false);
             await Swal.fire({
                 icon: 'error',
                 title: 'Incorrect Answer!',
@@ -97,14 +97,14 @@ const Region = (props) => {
             return;
         }
         if (a < 0 || b < 0 || c < 0) {
-            setAnswerCorrect5(true);
+            // setAnswerCorrect5(true);
             setPoints(points + 1);
             await Swal.fire('Correct Answer!', 'Your answer is correct!', 'success');
             setA('');
             setB('');
             setC('');
         } else {
-            setAnswerCorrect5(false);
+            // setAnswerCorrect5(false);
             await Swal.fire({
                 icon: 'error',
                 title: 'Incorrect Answer!',
