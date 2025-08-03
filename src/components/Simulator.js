@@ -102,11 +102,11 @@ function Simulator() {
         switch (step) {
             case 0:
                 return (
-                    <div className="min-h-screen p-10 justify-center">
+                    <div className=" p-10 justify-center">
                         <h1 className="text-4xl font-bold mb-4 text-center">
                             START SIMULATION
                         </h1>
-                        <div className="min-h-screen p-10 justify-center">
+                        <div className=" p-10 justify-center">
                             <h1 className="text-4xl font-bold mb-4 text-center">
                                 Graphical representation of Ax+By+C{'>'}0
                             </h1>
@@ -144,7 +144,7 @@ function Simulator() {
     };
 
     return (
-        <div className="min-h-screen p-10 justify-center">
+        <div className="p-10 ">
             <h1 className="text-4xl font-bold mb-4 justify-center text-align-bottom-center">INEQUATIONS IN TWO VARIABLES</h1>
             <Navbar />
             <div className="bg-gray-300 rounded-lg h-6 mb-4 relative mt-2">
@@ -157,7 +157,7 @@ function Simulator() {
                 </div>
             </div>
 
-            <div className="bg-gray-200 rounded-lg flex flex-col h-2/3">
+            <div className="bg-gray-200 rounded-lg  ">
                 {renderStep()}
 
                 {step === 5 &&
@@ -173,10 +173,10 @@ function Simulator() {
                     </div>}
 
                 {(step === 0 || step === 1 || step === 2 || step === 3 || step === 4) &&
-                    <div className="flex items-center justify-center h-full">
+                    <div className="flex items-center justify-center">
                         <button
                             type="button"
-                            className="btn btn-primary m-2 flex items-center justify-center"
+                            className="btn btn-primary m-2 "
                             onClick={handleNext}
                         >
                             Next

@@ -88,7 +88,6 @@ function Multi(props) {
                     {/* Content for the left grid */}
                     <div className='p-4'>
                         <h4 className='flex  justify-center items-center'> Instructions</h4>
-                        <h4 className='flex  justify-center items-center'> Instructions</h4>
                         <p>
                             <ul class="list-disc">
                                 <li>Now we plot a line using the equation Y{'='}mX+c.</li>

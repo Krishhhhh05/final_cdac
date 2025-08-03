@@ -7,7 +7,7 @@ const Region = (props) => {
     const [b, setB] = useState('');
     const [c, setC] = useState('');
     const [plotData, setPlotData] = useState(null);
-    const [ setAnswerCorrect5] = useState(true);
+    const [answerCorrect5, setAnswerCorrect5] = useState(true);
     const [points, setPoints] = useState(0);
 
 
@@ -136,7 +136,7 @@ const Region = (props) => {
             <div className="grid grid-cols-1 md:grid-cols-3 p-3 gap-3">
                 <div className="bg-gray-300 p-2 rounded-md">
                     <div className='p-2'>
-                        <h4> Instructions</h4>
+                        
                         
                             <ul class="list-disc">
                                 <li>Now we see a graph that represents the Inequation Ax+By+C{'>'}0.</li>

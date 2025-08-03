@@ -11,11 +11,11 @@ function Navbar() {
                         Theory
                     </NavLink>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                     <NavLink to="/animation" className="nav-link" activeClassName="active">
                         Animation
                     </NavLink>
-                </li>
+                </li> */}
                 <li className="nav-item">
                     <NavLink to="/simulator" className="nav-link" activeClassName="active">
                         Simulator
@@ -26,16 +26,16 @@ function Navbar() {
                         Self Evaluation
                     </NavLink>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                     <NavLink to="/ref" className="nav-link" activeClassName="active">
                         References
                     </NavLink>
-                </li>
-                <li className="nav-item">
+                </li> */}
+                {/* <li className="nav-item">
                     <NavLink to="/feedback" className="nav-link" activeClassName="active">
                         Feedback
                     </NavLink>
-                </li>
+                </li> */}
             </ul>
         </div>
     );

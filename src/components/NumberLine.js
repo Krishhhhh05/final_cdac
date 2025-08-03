@@ -13,10 +13,26 @@ const NumberLine = ({ onInputProvided }) => {
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
 
-    if (/^[0-9]+$/.test(inputValue)) {
+    // Allow empty input (user might be typing)
+    if (inputValue === '') {
+      return;
+    }
+
+    // Updated regex to allow negative numbers: optional minus sign followed by digits
+    if (/^-?\d+$/.test(inputValue)) {
       const numericValue = parseInt(inputValue, 10);
 
       if (numericValue >= -10 && numericValue <= 10) {
+        // Prevent submitting the same value that's already selected
+        if (numericValue === highlightedValue) {
+          Swal.fire({
+            title: 'Same Value',
+            text: `The value ${numericValue} is already selected. Please choose a different value.`,
+            icon: 'info',
+          });
+          return;
+        }
+        
         setHighlightedValue(numericValue);
         onInputProvided();
       } else {
@@ -45,7 +61,6 @@ const NumberLine = ({ onInputProvided }) => {
       y: leftIndices.map(() => 0),
       mode: 'markers',
       marker: { size: 10, color: 'red' },
-      name: '&lt; X',
       name: '&lt; X',
     },
     {
