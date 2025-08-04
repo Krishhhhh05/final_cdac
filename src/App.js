@@ -18,7 +18,7 @@ import Feedback from './components/Feedback';
 function App() {
   return (
     <Routes>
-    <Route path='/' element={<Home />}/>
+    <Route path='/' element={<Theory />}/>
     <Route path='/simulator' element={<Simulator />}/>
     <Route path='/graph1' element={<Graph1 />}/>
     <Route path='/simulator' element={<Simulator />}/>
