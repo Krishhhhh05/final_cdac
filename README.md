@@ -31,20 +31,26 @@ The project consists of **five interactive modules**, each focusing on a key mat
 
 ### 1. 📍 Number Line Visualizations  
 This module introduces basic **number line operations**. It helps students visualize numbers, intervals, and positioning on a number line—an essential skill for grasping algebra and inequalities.
+<img width="1822" height="628" alt="cdac1" src="https://github.com/user-attachments/assets/d2a0b8c0-4769-4d42-bf86-52dde79c7065" />
+<img width="1822" height="653" alt="cdac2" src="https://github.com/user-attachments/assets/851c128c-70ca-4d44-b388-e6c26bbae1f9" />
 
 ### 2. ➕ Inequality on a Number Line (Single Axis)  
 Students can explore **inequalities with a single variable**, plotted on a number line. It demonstrates open/closed intervals and visually distinguishes between `<`, `≤`, `>` and `≥`.
+<img width="1796" height="627" alt="cdac3" src="https://github.com/user-attachments/assets/7ecee137-5b9d-44ff-ae48-8055bebb2e3e" />
 
 ### 3. 📈 Plotting Linear Equations with One Variable  
 In this module, learners can graph **simple equations involving one variable**. The visual feedback reinforces the connection between algebraic expressions and their graphical representations.
+<img width="1772" height="723" alt="cdac4" src="https://github.com/user-attachments/assets/e14e58ff-6287-4b3b-8c89-80000566d949" />
 
 ### 4. ✖️ Plotting Linear Equations with Two Variables  
 This section helps students plot **linear equations in two variables** on a Cartesian plane. Concepts like slope, intercept, and direction become intuitive through interaction and visualization.
+<img width="1772" height="723" alt="cdac4" src="https://github.com/user-attachments/assets/1514e5f8-5160-409e-80dd-35dfaa08a04c" />
+<img width="576" height="406" alt="cdac6" src="https://github.com/user-attachments/assets/6c1ff652-b32d-496b-9dfb-60b355069820" />
 
 ### 5. 🔺 Visualizing Inequalities with Three Variables  
 This advanced module uses **3D graphs** to display inequalities involving three variables. Students can rotate, zoom, and explore the space to better understand how planes divide 3D space based on algebraic constraints.
-
-> 📸 *Each module includes visual screenshots to help users preview the experience before engaging with the simulation.*
+<img width="1767" height="797" alt="cdac7" src="https://github.com/user-attachments/assets/2df9e2a3-f5d8-400c-823b-57cd7c805175" />
+<img width="595" height="413" alt="cdac8" src="https://github.com/user-attachments/assets/6ae93475-7ed1-4349-81b0-bd7304d85101" />
 
 ---
 
