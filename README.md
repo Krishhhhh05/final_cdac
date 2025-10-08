@@ -44,7 +44,8 @@ In this module, learners can graph **simple equations involving one variable**. 
 
 ### 4. ✖️ Plotting Linear Equations with Two Variables  
 This section helps students plot **linear equations in two variables** on a Cartesian plane. Concepts like slope, intercept, and direction become intuitive through interaction and visualization.
-<img width="1772" height="723" alt="cdac4" src="https://github.com/user-attachments/assets/1514e5f8-5160-409e-80dd-35dfaa08a04c" />
+<img width="1697" height="808" alt="cdac5" src="https://github.com/user-attachments/assets/9e44e274-a22b-48e5-99f9-8e9f2525796d" />
+
 <img width="576" height="406" alt="cdac6" src="https://github.com/user-attachments/assets/6c1ff652-b32d-496b-9dfb-60b355069820" />
 
 ### 5. 🔺 Visualizing Inequalities with Three Variables  
