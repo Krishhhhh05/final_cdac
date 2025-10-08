@@ -4,6 +4,11 @@ This virtual lab was developed for the **Centre for Development of Advanced Comp
 
 This tool is designed to help students **visualize and better understand mathematical concepts** through interactive simulations and clear visual representations.
 
+## 🚀 Access the Lab
+
+Explore the live, deployed version of the virtual lab here:  
+🔗 [**Project Link**](https://cdac-ecru.vercel.app/) 
+
 ---
 
 ## 🔍 About the C-DAC Virtual Labs Initiative
@@ -46,7 +51,7 @@ This advanced module uses **3D graphs** to display inequalities involving three 
 ## 🚀 Access the Lab
 
 Explore the live, deployed version of the virtual lab here:  
-🔗 [**Project Link**](https://cdac-ecru.vercel.app/) *(Insert your actual link here)*
+🔗 [**Project Link**](https://cdac-ecru.vercel.app/) 
 
 ---
 
